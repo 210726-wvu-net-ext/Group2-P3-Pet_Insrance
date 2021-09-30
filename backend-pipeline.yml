@@ -73,8 +73,20 @@ stages:
     - job: Docker_Build
       displayName: Docker Build
       steps:
+      #Login
+      - task: Docker@2
+        inputs:
+          containerRegistry: 'Docker 1'
+          command: 'login'
       #Build
       - task: Docker@2
         inputs:
-          command: 'build'
+          containerRegistry: 'Docker 1'
+          repository: 'ehart3/gecko'
+          command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
+      #logout
+      - task: Docker@2
+        inputs:
+          containerRegistry: 'Docker 1'
+          command: 'logout'
