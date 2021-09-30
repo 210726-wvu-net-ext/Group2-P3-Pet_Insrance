@@ -14,20 +14,20 @@ variables: #Path to folders
   solution: 'WebAPI/*.sln'
 
 stages:
-- stage: Install_Build
-  #Runs NuGet and NPM Installs
+- stage: DotNet_Sonar
   jobs:
-    - job: NuInstall
-      displayName: NuGet Install-Restore
+  #Prepare the sonar cloud
+    - job: Scanner
+      displayName: 'Run Sonar Analysis'
       steps:
-      #Install
-      - task: NuGetToolInstaller@1
+      - task: SonarCloudPrepare@1
         inputs:
-          checkLatest: true
-      #Restore
-      - task: NuGetCommand@2
-        inputs:
-          restoreSolution: $(solution)
+          SonarCloud: 'Insurance Scanner'
+          organization: '210726-wvu-net-ext'
+          scannerMode: 'MSBuild'
+          projectKey: '210726-wvu-net-ext_Group2-P3-Pet_Insurance'
+          projectName: 'Group2-P3-Pet_Insurance'
+          extraProperties: 'sonar.exclusions=**/lib/**/*'
   #Build and test dotnet code
     - job: Build_test
       displayName: Dotnet Build-Test
@@ -38,6 +38,14 @@ stages:
         inputs:
           packageType: 'sdk'
           version: '5.x'
+      #Install nuGet
+      - task: NuGetToolInstaller@1
+        inputs:
+          checkLatest: true
+      #Restore solution
+      - task: NuGetCommand@2
+        inputs:
+          restoreSolution: $(solution)
       #Build
       - task: CmdLine@2
         displayName: Dotnet Build
@@ -50,6 +58,18 @@ stages:
         inputs:
           script: 'dotnet test --configuration Release'
           workingDirectory: $(sDir)
+      # Force dotnet 3.1
+      - task: UseDotNet@2
+        displayName: Dotnet SDK 3
+        inputs:
+          packageType: 'runtime'
+          version: '3.1.x'
+    #Analyze
+      - task: SonarCloudAnalyze@1
+        displayName: 'Run SonarCloud analysis'
+    #Publish
+      - task: SonarCloudPublish@1
+        displayName: 'Publish results on build summary'
 - stage: Docker
   jobs:
   #Build and eventally deploy a docker container
