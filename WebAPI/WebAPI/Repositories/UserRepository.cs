@@ -17,14 +17,14 @@ namespace WebAPI.Repositories
 
         public User AddUser(User user)
         {
-            if(GetUserById(user.Id) != null)
+            if(GetUserByEmail(user.Email) != null && GetUserByUsername(user.UserName) != null)
             {
                 return null;
             }
             _context.Users.Add(
                 new Entities.User
                 {
-
+                     
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     UserName = user.UserName,
@@ -41,7 +41,11 @@ namespace WebAPI.Repositories
             return user;
         }
 
-
+        /// <summary>
+        /// Could use some refactoring, Right now it checks both username and password, not realistic for a login
+        /// </summary>
+        /// <param name="attempt"></param>
+        /// <returns></returns>
         public User CheckUserCreds(User attempt)
         {
             User user = GetUserByEmail(attempt.Email);
@@ -50,7 +54,7 @@ namespace WebAPI.Repositories
                 User foundUser = new User(user.Id, user.FirstName, user.LastName, user.UserName, user.Password, user.DoB, user.Location, user.PhoneNumber,user.Email);
                 return foundUser;
             }
-            user = GetUserByUsername(attempt);
+            user = GetUserByUsername(attempt.UserName);
             if (user.UserName == attempt.UserName && user.Password == attempt.Password)
             {
                 User foundUser = new User(user.Id, user.FirstName, user.LastName, user.UserName, user.Password, user.DoB, user.Location, user.PhoneNumber, user.Email);
@@ -59,9 +63,9 @@ namespace WebAPI.Repositories
             else return null;
         }
 
-        public User GetUserByUsername(User user)
+        public User GetUserByUsername(string userName)
         {
-            var search = _context.Users.FirstOrDefault(u => u.UserName == user.UserName);
+            var search = _context.Users.FirstOrDefault(u => u.UserName == userName);
             if (search != null)
             {
                 User newUser = new User(search.Id, search.FirstName, search.LastName, search.UserName, search.Password, search.DoB, search.Location, search.PhoneNumber, search.Email);

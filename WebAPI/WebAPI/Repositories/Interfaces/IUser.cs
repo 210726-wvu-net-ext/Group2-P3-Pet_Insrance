@@ -14,7 +14,10 @@ namespace WebAPI.Repositories.Interfaces
         User GetUserById(int id);
         User GetUserByEmail(string email);
 
-        User GetUserByUsername(User user);
+        User GetUserByUsername(string userName);
+
+        //User UpdateUser(User user);     might not need.
+
 
 
         // this has to do with logging in
