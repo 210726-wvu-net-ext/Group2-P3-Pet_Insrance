@@ -82,7 +82,7 @@ stages:
       - task: Docker@2
         inputs:
           containerRegistry: 'Docker 1'
-          repository: 'ehart3/tulia'
+          repository: 'ehart3/gecko'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
       #logout
