@@ -29,9 +29,6 @@ stages:
           projectName: 'Group2-P3-Pet_Insurance'
           extraProperties: 'sonar.exclusions=**/lib/**/*'
   #Build and test dotnet code
-    - job: Build_test
-      displayName: Dotnet Build-Test
-      steps:
       # Force dotnet 5
       - task: UseDotNet@2
         displayName: Dotnet SDK 5
