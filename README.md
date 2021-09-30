@@ -1,7 +1,7 @@
 # Group2-P3-Pet_Insurance
 ## Project Description
 
-A Tier 1 personal lines insurance carrier is embarking on an initiative to sell Pet Insurance via a Direct to Consumer (D2C) channel strategy. This initiative is contained and disconnected from the ‘mothership’ carrier company in that it is green field without limitations of any legacy systems or constraints. The first phase of this program is focused on standing up the product in a sales portal customized to the carrier. Define the desired capabilities (i.e. requirements) of the D2C sales portal. The requirements should be ideally expressed from the perspective of the end user, i.e. the direct buyer. Also think about how analytics be used to present a customized sales experience to the end consumer for this product line.
+A Tier 1 personal lines insurance carrier is embarking on an initiative to sell Pet Insurance via a Direct to Consumer (D2C) channel strategy. This initiative is contained and disconnected from the ï¿½mothershipï¿½ carrier company in that it is green field without limitations of any legacy systems or constraints. The first phase of this program is focused on standing up the product in a sales portal customized to the carrier. Define the desired capabilities (i.e. requirements) of the D2C sales portal. The requirements should be ideally expressed from the perspective of the end user, i.e. the direct buyer. Also think about how analytics be used to present a customized sales experience to the end consumer for this product line.
 
 ## Technologies used
 	- C#
@@ -32,7 +32,7 @@ A Tier 1 personal lines insurance carrier is embarking on an initiative to sell 
 	
 ![Pet Insurance Flowchart](/Documentation/PetInsuranceFlowchart.png)
 
-##Contributors
+## Contributors
 ### Business Analysis
 - JD Angel
 - Nicolas Chan
