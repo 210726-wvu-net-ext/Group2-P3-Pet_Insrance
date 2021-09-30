@@ -41,8 +41,6 @@ namespace WebAPI
                 options.UseSqlServer(Configuration.GetConnectionString("lizardDB"));
                 options.LogTo(Console.WriteLine);
             });
-
-            
             services.AddScoped<IUser, UserRepository>();
 
             services.AddCors(c =>
