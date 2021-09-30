@@ -27,8 +27,6 @@ namespace WebAPI
             Configuration = configuration;
         }
 
-
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -41,6 +39,7 @@ namespace WebAPI
                 options.UseSqlServer(Configuration.GetConnectionString("lizardDB"));
                 options.LogTo(Console.WriteLine);
             });
+
             services.AddScoped<IUser, UserRepository>();
 
             services.AddCors(c =>

@@ -19,9 +19,5 @@ namespace WebAPI.Models
         public bool LeopardGecko { get; set; }
         public bool MoroccanUromastyx { get; set; }
         public bool BeardedDragon { get; set; }
-
-
-
-
     }
 }
