@@ -72,6 +72,7 @@ namespace WebAPI
                         }
                     };
                 });*/
+            services.AddScoped<IUser, UserRepository>();
 
             services.AddCors(c =>
             {
