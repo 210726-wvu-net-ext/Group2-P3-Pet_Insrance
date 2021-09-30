@@ -7,7 +7,7 @@ namespace WebAPI.Models
 {
     public class Pet
     {
-        public Pet(int id, string breed, decimal age, string location, string insurancePlan, string insuranceMonthly, int? userId)
+        public Pet(int id, string breed, decimal age, string location, string insurancePlan, string insuranceMonthly, int userId)
         {
             Id = id;
             Breed = breed;
@@ -17,7 +17,7 @@ namespace WebAPI.Models
             InsuranceMonthly = insuranceMonthly;
             UserId = userId;
         }
-        public Pet(string breed, decimal age, string location, string insurancePlan, string insuranceMonthly, int? userId)
+        public Pet(string breed, decimal age, string location, string insurancePlan, string insuranceMonthly, int userId)
         {
             Breed = breed;
             Age = age;
@@ -33,7 +33,7 @@ namespace WebAPI.Models
         public string Location { get; set; }
         public string InsurancePlan { get; set; }
         public string InsuranceMonthly { get; set; }
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
 
         public virtual User User { get; set; }
 

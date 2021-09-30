@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace WebAPI.Repositories
         {
             _context = context;
         }
-        public Pet AddPet(Pet pet)
+        public Task<Pet> AddPet(Pet pet)
         {
             _context.Pets.AddAsync(
                 new Entities.Pet
@@ -34,29 +35,26 @@ namespace WebAPI.Repositories
 
 
 
-        public Pet DeletePet(Pet pet)
-        {
+        public async Task<bool> DeletePet(Pet pet)
+        {                
+            var attempt = _context.Remove(_context.Pets.FirstOrDefault(s => s.Id == pet.Id));
             try
             {
-                _context.Pets.Remove(_context.Pets.FirstOrDefault(s => s.Id == pet.Id));
+                await _context.SaveChangesAsync();
+                return true;
             }
             catch(Exception e)
             {
                 Console.WriteLine(e);
-                return null;
             }
-            finally
-            {
-                _context.SaveChangesAsync();
-            }
-            return pet;
+            return false;
         }
 
 
 
-        public Pet GetPetById(int id)
+        public async Task<Pet> GetPetById(int id)
         {
-            var get = _context.Pets.FirstOrDefault(s => s.Id == id);
+            var get = await _context.Pets.FirstOrDefaultAsync(s => s.Id == id);
             if(get != null)
             {
                 Pet pet = new Pet(get.Id, get.Breed, get.Age, get.Location, get.InsurancePlan, get.InsuranceMonthly, get.UserId);
@@ -66,26 +64,26 @@ namespace WebAPI.Repositories
             return null;
         }
 
-        public List<Pet> GetPetsByUserId(int id)
+        public Task<List<Pet>> GetPetsByUserId(int id)
         {
-            List<Pet> list = _context.Pets.Where(p => p.UserId == id).Select(x => new Pet(x.Id, x.Breed, x.Age, x.Location, x.InsurancePlan, x.InsuranceMonthly, x.UserId)).ToList();
+            Task<List<Pet>> list = _context.Pets.Where(p => p.UserId == id).Select(x => new Pet(x.Id, x.Breed, x.Age, x.Location, x.InsurancePlan, x.InsuranceMonthly, x.UserId)).ToListAsync();
             return list;
         }
 
-        public Pet UpdatePet(Pet pet)
+        public async Task<Pet> UpdatePet(Pet pet)
         {
-            Pet original = GetPetById(pet.Id);
-            original.Breed = pet.Breed;
-            original.Age = pet.Age;
-            original.Location = pet.Location;
-            original.InsurancePlan = pet.InsurancePlan;
-            original.InsuranceMonthly = pet.InsuranceMonthly;
-            original.UserId = pet.UserId;
-            _context.SaveChangesAsync();
-            return GetPetById(original.Id);
+            Task<Pet> original = GetPetById(pet.Id);
+            original.Result.Breed = pet.Breed;
+            original.Result.Age = pet.Age;
+            original.Result.Location = pet.Location;
+            original.Result.InsurancePlan = pet.InsurancePlan;
+            original.Result.InsuranceMonthly = pet.InsuranceMonthly;
+            original.Result.UserId = pet.UserId;
+            await _context.SaveChangesAsync();
+            return pet;
         }
 
-        public string CalculateInsurance(Pet pet)
+        public Task<string> CalculateInsurance(Pet pet)
         {
             throw new NotImplementedException();
         }

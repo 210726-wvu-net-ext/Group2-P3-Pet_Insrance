@@ -36,7 +36,7 @@ namespace WebAPI.Repositories
                 }
             );
 
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
             User newUser = GetUserByEmail(user.Email);
             return user;
         }

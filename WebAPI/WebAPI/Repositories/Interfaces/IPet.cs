@@ -8,11 +8,11 @@ namespace WebAPI.Repositories.Interfaces
 {
     public interface IPet
     {
-        Pet AddPet(Pet pet);
-        Pet DeletePet(Pet pet);
-        Pet GetPetById(int id);
-        List<Pet> GetPetsByUserId(int id);
-        Pet UpdatePet(Pet pet);
-        string CalculateInsurance(Pet pet);
+        Task<Pet> AddPet(Pet pet);
+        Task DeletePet(Pet pet);
+        Task<Pet> GetPetById(int id);
+        Task<List<Pet>> GetPetsByUserId(int id);
+        Task<Pet>UpdatePet(Pet pet);
+        Task<string> CalculateInsurance(Pet pet);
     }
 }
