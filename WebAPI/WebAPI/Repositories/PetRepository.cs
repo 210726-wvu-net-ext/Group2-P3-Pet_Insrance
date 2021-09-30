@@ -16,9 +16,9 @@ namespace WebAPI.Repositories
         {
             _context = context;
         }
-        public Task<Pet> AddPet(Pet pet)
+        public async Task<Pet> AddPet(Pet pet)
         {
-            _context.Pets.AddAsync(
+            await _context.Pets.AddAsync(
                 new Entities.Pet
                 {
                     Breed = pet.Breed,
@@ -29,7 +29,7 @@ namespace WebAPI.Repositories
                     UserId = pet.UserId,
 
                 });
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
             return pet;
         }
 
@@ -84,6 +84,11 @@ namespace WebAPI.Repositories
         }
 
         public Task<string> CalculateInsurance(Pet pet)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task IPet.DeletePet(Pet pet)
         {
             throw new NotImplementedException();
         }

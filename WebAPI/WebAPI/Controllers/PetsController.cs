@@ -45,10 +45,10 @@ namespace WebAPI.Controllers
         [HttpPut]
         public async Task<ActionResult<Pet>> PutPet(Pet pet)
         {
-            var  = await _petRepo.AddPet(pet);
-            if(k != null)
+            var attempt  = await _petRepo.AddPet(pet);
+            if(attempt != null)
             {
-                return Ok(k);
+                return Ok(attempt);
             }
             else
             {
@@ -69,8 +69,16 @@ namespace WebAPI.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeletePet(Pet pet)
         {
-            var k = await _petRepo.DeletePet(pet)
-            return NoContent();
+            try
+            {
+                await _petRepo.DeletePet(pet);
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest();
+            }
+            return Ok();
         }
     }
 }
