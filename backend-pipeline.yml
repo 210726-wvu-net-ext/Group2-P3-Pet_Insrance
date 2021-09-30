@@ -76,5 +76,7 @@ stages:
       #Build
       - task: Docker@2
         inputs:
-          command: 'build'
+          repository: 'ehart3/tulia'
+          command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
+      
