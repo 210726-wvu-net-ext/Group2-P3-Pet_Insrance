@@ -15,16 +15,16 @@ A Tier 1 personal lines insurance carrier is embarking on an initiative to sell 
 	- SeriLog
 ## Features
 	- Users can: 
-	-	Create an account and log in
-	-	See the legality of lizards as pets in all 50 states
-	-	Add pet lizard(s) to their account
-    -	Get a quote for insuring their pet lizards
-    -	See options for "Silver" or "Gold" quality coverage based on their needs
-	-	Have an insurance quote sent to their e-mail address
+		- Create an account and log in
+		- See the legality of lizards as pets in all 50 states
+		- Add pet lizard(s) to their account
+    	- Get a quote for insuring their pet lizards
+    	- See options for "Silver" or "Gold" quality coverage based on their needs
+		- Have an insurance quote sent to their e-mail address
 	- Pet Insurance
-    -	Features an "About Us" page where users can see information about the insurance company
-    -	Features a suppport page where users can get support via e-mail or telephone
-    -	Features a "Purchase History" page where users can lookback on their coverage purchases.
+    	- Features an "About Us" page where users can see information about the insurance company
+    	- Features a suppport page where users can get support via e-mail or telephone
+    	- Features a "Purchase History" page where users can lookback on their coverage purchases.
 
 ## Getting Started
 
