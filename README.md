@@ -25,3 +25,19 @@ Pet Insurance is a web application that allows users peace of mind by to offerin
     - Web application features a "Purchase History" page where users can lookback on their coverage purchases.
 ## Usage
 	
+![Pet Insurance Flowchart](/Documentation/PetInsuranceFlowchart.png)
+
+##Contributors
+### Business Analysis
+- Jeramiah Angel
+- Nicolas Chan
+- Semsi Dogruer
+- Tim Herger
+
+### Development
+- Collin Hintzke
+- Du Tran
+- Dylan Restivo
+- Emery Hart
+- Liam Sloan
+- Yuriy Yarytskyy
