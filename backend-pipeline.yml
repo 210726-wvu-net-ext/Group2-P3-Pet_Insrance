@@ -73,10 +73,17 @@ stages:
     - job: Docker_Build
       displayName: Docker Build
       steps:
+      #Login
+      - task: Docker@2
+        inputs:
+          command: 'login'
       #Build
       - task: Docker@2
         inputs:
           repository: 'ehart3/tulia'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
-      
+      #logout
+      - task: Docker@2
+        inputs:
+          command: 'logout'
