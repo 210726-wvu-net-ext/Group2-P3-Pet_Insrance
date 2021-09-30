@@ -76,14 +76,17 @@ stages:
       #Login
       - task: Docker@2
         inputs:
+          containerRegistry: 'Docker 1'
           command: 'login'
       #Build
       - task: Docker@2
         inputs:
+          containerRegistry: 'Docker 1'
           repository: 'ehart3/tulia'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
       #logout
       - task: Docker@2
         inputs:
+          containerRegistry: 'Docker 1'
           command: 'logout'
