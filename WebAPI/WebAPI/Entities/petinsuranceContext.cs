@@ -151,5 +151,7 @@ namespace WebAPI.Entities
         public DbSet<WebAPI.Models.Breed> Breed { get; set; }
 
         public DbSet<WebAPI.Models.Pet> Pet { get; set; }
+
+        public DbSet<WebAPI.Models.User> User { get; set; }
     }
 }

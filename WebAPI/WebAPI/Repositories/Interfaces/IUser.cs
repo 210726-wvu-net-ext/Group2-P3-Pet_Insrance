@@ -8,20 +8,19 @@ namespace WebAPI.Repositories.Interfaces
 {
     public interface IUser
     {
-        List<User> GetUsers();
-        User AddUser(User user);
-        string DeleteUser(User user);
-        User GetUserById(int id);
-        User GetUserByEmail(string email);
+        Task<User> AddUser(User user);
+        Task<string> DeleteUser(User user);
+        Task<User> GetUserById(int id);
+        Task<User> GetUserByEmail(string email);
 
-        User GetUserByUsername(string userName);
+        Task<User> GetUserByUsername(string userName);
 
         //User UpdateUser(User user);     might not need.
 
 
 
         // this has to do with logging in
-        User CheckUserCreds(User attempt);
+        Task<User> CheckUserCreds(User attempt);
 
 
 

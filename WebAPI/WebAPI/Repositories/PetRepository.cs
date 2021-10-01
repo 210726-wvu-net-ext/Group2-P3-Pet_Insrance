@@ -27,7 +27,6 @@ namespace WebAPI.Repositories
                     InsurancePlan = pet.InsurancePlan,
                     InsuranceMonthly = pet.InsuranceMonthly,
                     UserId = pet.UserId,
-
                 });
             await _context.SaveChangesAsync();
             return pet;
@@ -35,9 +34,9 @@ namespace WebAPI.Repositories
 
 
 
-        public async Task<bool> DeletePet(Pet pet)
+        public async Task<bool> DeletePetAsync(Pet pet)
         {                
-            var attempt = _context.Remove(_context.Pets.FirstOrDefault(s => s.Id == pet.Id));
+            var attempt = _context.Remove(_context.Pets.FirstOrDefaultAsync(s => s.Id == pet.Id));
             try
             {
                 await _context.SaveChangesAsync();
@@ -55,6 +54,7 @@ namespace WebAPI.Repositories
         public async Task<Pet> GetPetById(int id)
         {
             var get = await _context.Pets.FirstOrDefaultAsync(s => s.Id == id);
+            
             if(get != null)
             {
                 Pet pet = new Pet(get.Id, get.Breed, get.Age, get.Location, get.InsurancePlan, get.InsuranceMonthly, get.UserId);
@@ -82,15 +82,24 @@ namespace WebAPI.Repositories
             await _context.SaveChangesAsync();
             return pet;
         }
-
+        /// <summary>
+        /// calculate insurance could be done at anytime, ask devs where to fit it in
+        /// </summary>
+        /// <param name="pet"></param>
+        /// <returns></returns>
         public Task<string> CalculateInsurance(Pet pet)
         {
-            throw new NotImplementedException();
+            var findBreed = _context.Breeds.FirstOrDefaultAsync(s => s.Species == pet.Breed);
+            
+
+            return null;
         }
 
-        Task IPet.DeletePet(Pet pet)
+        public async Task DeletePet(Pet pet)
         {
-            throw new NotImplementedException();
+            var found = await _context.Pets.FirstOrDefaultAsync(p => p.Id == pet.Id);
+            _context.Pets.Remove(found);
+            await _context.SaveChangesAsync();
         }
     }
 }

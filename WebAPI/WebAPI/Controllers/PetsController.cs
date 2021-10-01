@@ -28,16 +28,16 @@ namespace WebAPI.Controllers
             var k = await _petRepo.GetPetsByUserId(id);
             try
             {
-                if(k != null)
+                if(k.Count != 0)
                 {
                     return Ok(k);
                 }
             }
             catch(Exception e)
             {
-
+                
             }
-            return NotFound("No pets by user ${id} found");
+            return NotFound("No pets by user found");
         }
 
         // PUT: api/Pets
@@ -45,15 +45,8 @@ namespace WebAPI.Controllers
         [HttpPut]
         public async Task<ActionResult<Pet>> PutPet(Pet pet)
         {
-            var attempt  = await _petRepo.AddPet(pet);
-            if(attempt != null)
-            {
-                return Ok(attempt);
-            }
-            else
-            {
-                return BadRequest(pet);
-            }
+            Pet newPet = await _petRepo.UpdatePet(pet);
+            return CreatedAtAction("Added new Pet", newPet);
         }
 
         // POST: api/Pets
@@ -61,8 +54,16 @@ namespace WebAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<Pet>> PostPet(Pet pet)
         {
-            Pet newPet = await _petRepo.UpdatePet(pet);
-            return CreatedAtAction("Added new Pet", newPet);
+            var attempt = await _petRepo.AddPet(pet);
+            
+            if (attempt != null)
+            {
+                return Ok(attempt);
+            }
+            else
+            {
+                return BadRequest(pet);
+            }
         }
 
         // DELETE: api/Pets
