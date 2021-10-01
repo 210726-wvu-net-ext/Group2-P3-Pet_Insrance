@@ -1,1 +1,71 @@
-<p>register works!</p>
+<div class="container" style="text-align:center; padding: 20px; padding-top: 150px;"><h1>Create Account</h1></div>
+<form class="row g-3 needs-validation" style="padding-left: 250px; padding-right: 250px;  padding-bottom: 200px;" novalidate>
+    <div class="col-md-4 position-relative">
+      <label for="validationTooltip01" class="form-label">First name</label>
+      <input type="text" class="form-control" id="validationTooltip01" value="Mark" required>
+      <div class="valid-tooltip">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 position-relative">
+      <label for="validationTooltip02" class="form-label">Last name</label>
+      <input type="text" class="form-control" id="validationTooltip02" value="Otto" required>
+      <div class="valid-tooltip">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 position-relative">
+      <label for="validationTooltipUsername" class="form-label">Username</label>
+      <div class="input-group has-validation">
+        <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+        <input type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+        <div class="invalid-tooltip">
+          Please choose a unique and valid username.
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 position-relative">
+        <label for="validationTooltip03" class="form-label">Password</label>
+        <input type="text" class="form-control" id="validationTooltip03" required>
+        <div class="invalid-tooltip">
+          Please provide a Password.
+        </div>
+      </div>
+    <div class="col-md-6 position-relative">
+      <label for="validationTooltip03" class="form-label">Dob</label>
+      <input type="text" class="form-control" id="validationTooltip03" required>
+      <div class="invalid-tooltip">
+        Please provide your DoB.
+      </div>
+    </div>
+    <div class="col-md-3 position-relative">
+      <label for="validationTooltip04" class="form-label">State</label>
+      <select class="form-select" id="validationTooltip04" required>
+        <option selected disabled value="">Choose...</option>
+        <option>...</option>
+      </select>
+      <div class="invalid-tooltip">
+        Please select a valid state.
+      </div>
+    </div>
+    <div class="col-md-3 position-relative">
+      <label for="validationTooltip05" class="form-label">Phone Number</label>
+      <input type="text" class="form-control" id="validationTooltip05" required>
+      <div class="invalid-tooltip">
+        Please provide your phone number.
+      </div>
+    </div>
+    <div class="col-md-3 position-relative">
+        <label for="validationTooltip05" class="form-label">Email</label>
+        <input type="text" class="form-control" id="validationTooltip05" required>
+        <div class="invalid-tooltip">
+          Please provide your email.
+        </div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Create Account</button>
+    </div>
+    <div class="col-12">
+        <button class="btn btn-primary text-end" type="submit">Cancel</button>
+      </div>
+  </form>
