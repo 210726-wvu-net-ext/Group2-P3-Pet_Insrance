@@ -4,8 +4,6 @@ WORKDIR /src/app
 COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install -g @angular/cli
 RUN npm install --production --silent
-COPY . ./
-WORKDIR /Client
 RUN npx ng build
 
 # Second Stage
