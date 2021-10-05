@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { PlansComponent } from './plans/plans.component';
 
 
 
@@ -11,7 +12,8 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
   declarations: [
     LoginComponent,
     RegisterComponent,
-    QuestionnaireComponent
+    QuestionnaireComponent,
+    PlansComponent
   ],
   imports: [
     CommonModule,
