@@ -12,7 +12,7 @@ import { User } from './User';
 export class AccountService {
 
   private userSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
-  user$: Observable<User | null> = this.userSubject.asObservable().pipe(shareReplay());
+  user$: Observable<User | null> = this.userSubject.asObservable().pipe();
 
   constructor(private sharedService: SharedService) {
   }
@@ -27,11 +27,11 @@ export class AccountService {
 
 
   logIn(userName: string, email: string, pass: string) {
-    this.sharedService.LoginUser({
+    this.sharedService.logInUser({
       userName,
       email,
       pass
-    }).subscribe(user => {
+    }).subscribe((user: User | null) => {
       console.log(user);
       this.userSubject.next(user);
       localStorage.setItem('user', JSON.stringify(user))

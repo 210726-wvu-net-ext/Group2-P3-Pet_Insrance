@@ -15,7 +15,7 @@ export class SharedService {
 
 
 
-  LoginUser(logInRequest : LogInRequest):Observable<User>{
+  logInUser(logInRequest : LogInRequest):Observable<User>{
     return this.https.post<User>(this.APIUrl+'User/Login', logInRequest)
   }
 
