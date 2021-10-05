@@ -2,6 +2,7 @@
 FROM node:14-alpine as build
 WORKDIR /src/app
 COPY ["package.json", "package-lock.json*", "./"]
+RUN npm install -g @angular/cli
 RUN npm install --production --silent
 COPY . ./
 RUN npx ng build
