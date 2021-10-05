@@ -43,13 +43,13 @@ namespace WebAPI.Controllers
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
-        [HttpGet("Login")]
-        public async Task<ActionResult<User>> Login(User user)
+        [HttpPost("Login")]
+        public async Task<ActionResult<User>> Login(LogInRequest user)
         {
             User findUser = await _repo.CheckUserCreds(user);
             if(findUser != null)
             {
-                return Ok(user);
+                return Ok(findUser);
             }
             return BadRequest("User not found");
         }
@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
                 return Ok("Successfully Added user");
             }
             return BadRequest("Something went wrong");
-        }
 
+        }
     }
 }
