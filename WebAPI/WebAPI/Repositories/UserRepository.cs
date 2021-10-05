@@ -47,7 +47,7 @@ namespace WebAPI.Repositories
         /// </summary>
         /// <param name="attempt"></param>
         /// <returns></returns>
-        public async Task<User> CheckUserCreds(User attempt)
+        public async Task<User> CheckUserCreds(LoginRequest attempt)
         {
 
             if(attempt.UserName == "")
