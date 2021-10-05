@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, ModalDismissReasons, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from 'src/app/shared.service';
 import { LogInRequest } from '../account.service';
 
@@ -31,15 +31,15 @@ export class LoginComponent implements OnInit {
       pass: [''],
       email: ['']
     })
-    
   }
+
   onSubmit() {
     let request: LogInRequest;
-    if(this.form.value.email == '')
+    if(this.form.value.email)
     {
       request = {
         userName: this.form.value.userName,
-        email: "",
+        email: '',
         pass: this.form.value.pass
       }
     }
