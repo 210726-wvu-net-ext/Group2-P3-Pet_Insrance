@@ -13,7 +13,7 @@ namespace WebAPI.Entities
         public string Location { get; set; }
         public string InsurancePlan { get; set; }
         public string InsuranceMonthly { get; set; }
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
 
         public virtual User User { get; set; }
     }
