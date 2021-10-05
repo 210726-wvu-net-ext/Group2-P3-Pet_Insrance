@@ -20,7 +20,7 @@ namespace WebAPI.Repositories.Interfaces
 
 
         // this has to do with logging in
-        Task<User> CheckUserCreds(User attempt);
+        Task<User> CheckUserCreds(LoginRequest attempt);
 
 
 
