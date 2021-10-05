@@ -12,9 +12,11 @@ services:
       - 4200:4200
   
   WebAPI: 
-      image: WebAPI
-      build:
-        context: WebAPI
-        dockerfile: ./Dockerfile
-      ports:
+    image: WebAPI
+    build:
+      context: WebAPI
+      dockerfile: ./Dockerfile
+    enviroment:
+      NODE_ENV: production
+    ports:
       - 4200:4200
