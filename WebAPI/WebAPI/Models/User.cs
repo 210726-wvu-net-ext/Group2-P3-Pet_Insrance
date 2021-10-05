@@ -7,6 +7,10 @@ namespace WebAPI.Models
 {
     public class User
     {
+        public User()
+        {
+        }
+
         public User(int id, string firstName, string lastName, string userName, string password, string doB, string location, string phoneNumber, string email)
         {
             Id = id;
