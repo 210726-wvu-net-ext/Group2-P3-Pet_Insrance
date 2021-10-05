@@ -1,6 +1,8 @@
-# Group2-P3-Pet_Insrance
+# Group2-P3-Pet_Insurance
 ## Project Description
-	- Pet Insurance is a web application that allows users peace of mind by to offering insurance options for their pet lizards.
+
+Pet Insurance is a web application that allows users peace of mind by to offering insurance options for their pet lizards.
+
 ## Technologies used
 	- C#
 	- Asp.Net Web API
