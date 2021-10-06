@@ -8,11 +8,11 @@ COPY [ ".", "./" ]
 RUN npx ng build
 
 # Second Stage
-FROM nginx:1.20
+FROM nginx:latest
 WORKDIR /usr/share/nginx/html
 #Remove default page
 RUN rm -rf *
 #Link configuring
-COPY nginx-custom.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist/* ./
 
