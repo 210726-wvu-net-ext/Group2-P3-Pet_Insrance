@@ -86,7 +86,7 @@ stages:
         displayName: Build & Push
         inputs:
           containerRegistry: '$(cReg)'
-          repository: 'gecko/backend'
+          repository: 'gecko/back-end'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
       #logout
