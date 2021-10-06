@@ -49,28 +49,47 @@ namespace WebAPI.Repositories
         /// <returns></returns>
         public async Task<User> CheckUserCreds(LoginRequest attempt)
         {
+            if(!attempt.Email.Contains('@'))
+            {
+                attempt.UserName = attempt.Email;
+            }
+            try
+            {
+                if(attempt.Email.Contains('@'))
+                {
+                    User user = await GetUserByEmail(attempt.Email);
+                    if (user != null)
+                    {
+                        if (user.Email == attempt.Email && user.Password == attempt.Password)
+                        {
+                            User foundUser = new User(user.Id, user.FirstName, user.LastName, user.UserName, user.Password, user.DoB, user.Location, user.PhoneNumber, user.Email);
+                            return foundUser;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            try
+            {
+                User user = await GetUserByUsername(attempt.Email);
+                if (user != null)
+                {
+                    if (user.UserName == attempt.UserName && user.Password == attempt.Password)
+                    {
+                        User foundUser = new User(user.Id, user.FirstName, user.LastName, user.UserName, user.Password, user.DoB, user.Location, user.PhoneNumber, user.Email);
+                        return foundUser;
+                    }
 
-            if(attempt.UserName == "")
-            {
-                User user = await GetUserByEmail(attempt.Email);
-                if (user.Email == attempt.Email && user.Password == attempt.Password)
-                {
-                    User foundUser = new User(user.Id, user.FirstName, user.LastName, user.UserName, user.Password, user.DoB, user.Location, user.PhoneNumber, user.Email);
-                    return foundUser;
                 }
-                else return null;
             }
-            else if(attempt.Email == "")
+            catch
             {
-                User user = await GetUserByUsername(attempt.UserName);
-                if (user.UserName == attempt.UserName && user.Password == attempt.Password)
-                {
-                    User foundUser = new User(user.Id, user.FirstName, user.LastName, user.UserName, user.Password, user.DoB, user.Location, user.PhoneNumber, user.Email);
-                    return foundUser;
-                }
-                else return null;
+
             }
-            else return null;
+            return null;
         }
 
         public async Task<User> GetUserByUsername(string userName)

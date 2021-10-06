@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log("Hello from submit");
-    this.service.showUsers();
     let request: LoginRequest;
     
       request = {
