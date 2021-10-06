@@ -1,6 +1,6 @@
 #Inital build stage
 FROM node:14-alpine as build
-WORKDIR /src/app
+WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
 #Restore
 RUN npm ci
