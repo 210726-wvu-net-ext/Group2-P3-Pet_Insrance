@@ -18,14 +18,12 @@ namespace WebAPI.Repositories
 
         public async Task<User> AddUser(User user)
         {
-            if(GetUserByEmail(user.Email) != null || GetUserByUsername(user.UserName) != null)
+            if (await GetUserByEmail(user.Email) == null && await GetUserByUsername(user.UserName) == null)
             {
-                return null;
-            }
-            await _context.Users.AddAsync(
+                await _context.Users.AddAsync(
                 new Entities.User
                 {
-                     
+
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     UserName = user.UserName,
@@ -34,12 +32,12 @@ namespace WebAPI.Repositories
                     Location = user.Location,
                     PhoneNumber = user.PhoneNumber,
                     Email = user.Email,
-                }
-            );
-
-            await _context.SaveChangesAsync();
-            User newUser = await GetUserByEmail(user.Email);
-            return newUser;
+                });
+                await _context.SaveChangesAsync();
+                User newUser = await GetUserByEmail(user.Email);
+                return newUser;
+            }
+            else return null;
         }
 
         /// <summary>

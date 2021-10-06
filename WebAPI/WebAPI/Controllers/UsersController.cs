@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
             User newUser = await _repo.AddUser(user);
             if(newUser != null)
             {
-                return Ok("Successfully Added user");
+                return Ok(newUser);
             }
             return BadRequest("Something went wrong");
         }
