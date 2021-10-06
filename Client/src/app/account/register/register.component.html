@@ -1,4 +1,4 @@
-<div class="container" style="text-align:center; padding: 20px; padding-top: 5px;"><h1>Create Account</h1></div>
+<!-- <div class="container" style="text-align:center; padding: 20px; padding-top: 5px;"><h1>Create Account</h1></div>
 <form class="row g-3 needs-validation" style="padding-left: 250px; padding-right: 250px;  padding-bottom: 200px;" novalidate>
     <div class="col-md-4 position-relative">
       <label for="validationTooltip01" class="form-label">First name</label>
@@ -68,4 +68,54 @@
     <div class="col-12">
         <button class="btn btn-primary text-end" type="submit">Cancel</button>
       </div>
-  </form>
+  </form> -->
+  <div class="container" style="margin-bottom: 100px;">
+    <div class="row">
+      <div class="col-mb-6">
+        <div class="card">
+          <div class="text center">
+            <h1>Sign Up</h1>
+            <h6>Please Register.</h6>
+          </div>
+          
+            <form [formGroup]="registerForm" (ngSubmit)="register()">
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">First Name</label>
+                <input formControlName="firstName" type="string" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Last Name</label>
+                <input formControlName="lastName" type="string" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">User Name</label>
+                <input formControlName="userName" type="string" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Password</label>
+                <input formControlName="password" type="string" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">DOB</label>
+                <input formControlName="doB" type="string" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Location</label>
+                <input formControlName="location" type="string" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Phone Number</label>
+                <input formControlName="phoneNumber" type="string" class="form-control" id="exampleInputPassword1">
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input formControlName="email" type="string" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+              </div>
+              <button type="submit" class="btn btn-primary">Sign-Up</button>
+            </form>
+            <a style="margin-top: 10px;" routerLink="/account/login">Already registered? Login Here.</a>
+        </div>
+      </div>
+    </div>
+  </div>

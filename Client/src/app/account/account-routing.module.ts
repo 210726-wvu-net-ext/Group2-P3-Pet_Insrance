@@ -7,6 +7,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { PlansComponent } from './plans/plans.component';
 
 const routes: Routes = [
+  {path: '', redirectTo:'questionnaire', pathMatch:'full'},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'questionnaire', component: QuestionnaireComponent},

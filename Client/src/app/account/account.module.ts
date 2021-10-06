@@ -7,6 +7,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { PlansComponent } from './plans/plans.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from './account.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -21,6 +22,7 @@ import { AccountService } from './account.service';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    HttpClientModule,
     AccountRoutingModule
   ],
   providers: [AccountService]

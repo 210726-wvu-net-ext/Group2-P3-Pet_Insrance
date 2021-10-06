@@ -53,7 +53,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest("User not found");
         }
-        [HttpGet("Register")]
+        [HttpPost("Register")]
         public async Task<ActionResult<User>> Create(User user)
         {
             User newUser = await _repo.AddUser(user);
