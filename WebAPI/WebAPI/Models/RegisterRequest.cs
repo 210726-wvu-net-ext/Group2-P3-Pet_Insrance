@@ -7,5 +7,6 @@ namespace WebAPI.Models
 {
     public class RegisterRequest
     {
+        
     }
 }
