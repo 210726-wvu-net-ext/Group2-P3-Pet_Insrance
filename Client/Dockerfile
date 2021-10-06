@@ -2,15 +2,18 @@
 FROM node:14-alpine as build
 WORKDIR /src/app
 COPY ["package.json", "package-lock.json*", "./"]
-RUN npm install -g @angular/cli
-RUN npm install --production --silent
+#Restore
+RUN npm ci
+COPY [ ".", "./" ]
 RUN npx ng build
 
 # Second Stage
 FROM nginx:latest-alpine 
 WORKDIR /usr/share/nginx/html
+#Remove default page
 RUN rm -rf *
-COPY nginx-custom.conf /etc/nginx/conf.d/default.conf
+#Link configuring
+COPY nginx-custom.conf /etc/nginx/conf.d/default.conf 
 COPY --from=build /app/dist/* ./
 
 EXPOSE 4200
