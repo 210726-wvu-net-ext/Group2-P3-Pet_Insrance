@@ -8,7 +8,7 @@ COPY [ ".", "./" ]
 RUN npx ng build
 
 # Second Stage
-FROM nginx:latest-alpine 
+FROM nginx:latest
 WORKDIR /usr/share/nginx/html
 #Remove default page
 RUN rm -rf *
