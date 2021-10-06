@@ -37,12 +37,5 @@ namespace WebAPI.Models
         public string InsurancePlan { get; set; }
         public string InsuranceMonthly { get; set; }
         public int UserId { get; set; }
-
-
-        public string CalculateInsurance()
-        {
-            
-            return "WIP";
-        }
     }
 }

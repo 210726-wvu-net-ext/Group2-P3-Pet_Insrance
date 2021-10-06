@@ -83,16 +83,35 @@ namespace WebAPI.Repositories
             return pet;
         }
         /// <summary>
-        /// calculate insurance could be done at anytime, ask devs where to fit it in
+        /// CalculateInsurance gets called on a list of pets to do the calculations for cost
         /// </summary>
         /// <param name="pet"></param>
         /// <returns></returns>
-        public Task<string> CalculateInsurance(Pet pet)
+        public async Task<bool> CheckQualification(Pet pet)
         {
-            var findBreed = _context.Breeds.FirstOrDefaultAsync(s => s.Species == pet.Breed);
-            
-
-            return null;
+            if(pet.UserId != 0)
+            {
+                var findPet = await _context.Pets.FirstOrDefaultAsync(s => s.Id == pet.Id);
+                var findBreed = await _context.Breeds.FirstOrDefaultAsync(b => b.Species == pet.Breed);
+                var findState = await _context.States.FirstOrDefaultAsync(l => l.StateName == pet.Location);
+                if (findState.QualifiedLizards.Split(", ").Contains(findBreed.Id.ToString()))
+                {
+                    return true;
+                }
+                else return false;
+                
+                
+                
+            }
+            else
+            {
+                var findState = await _context.States.FirstOrDefaultAsync(l => l.StateName == pet.Location);
+                if (findState.QualifiedLizards.Split(", ").Contains(pet.Breed))
+                {
+                    return true;
+                }
+                else return false;
+            }
         }
 
         public async Task DeletePet(Pet pet)
@@ -100,6 +119,33 @@ namespace WebAPI.Repositories
             var found = await _context.Pets.FirstOrDefaultAsync(p => p.Id == pet.Id);
             _context.Pets.Remove(found);
             await _context.SaveChangesAsync();
+        }
+        public async Task<InsurancePlan> GetQuote(Pet pet)
+        {
+            InsurancePlan plan = new InsurancePlan();
+            plan.PetId = pet.Id;
+            var foundBreed = await _context.Breeds.FirstOrDefaultAsync(s => s.Species == pet.Breed);
+            var baseCost = (pet.Age / foundBreed.AvgLifeSpan);
+            var cost = (foundBreed.AvgLifeSpan * baseCost);
+
+            decimal low = new decimal (.34);
+            decimal high = new decimal (.66);
+            if (cost < low)
+            {
+                plan.SilverCost = Math.Round(new decimal(1.4) * foundBreed.Price, 2);
+                plan.GoldCost = Math.Round(new decimal(2.5) * foundBreed.Price, 2);
+            }
+            else if(cost > high)
+            {
+                plan.SilverCost = Math.Round(new decimal(4.19) * foundBreed.Price,2);
+                plan.GoldCost = Math.Round(new decimal(6.09) * foundBreed.Price, 2);
+            }
+            else
+            {
+                plan.SilverCost = Math.Round(new decimal(2.53) * foundBreed.Price, 2);
+                plan.GoldCost = Math.Round(new decimal(3.73) * foundBreed.Price, 2);
+            }
+            return plan;
         }
     }
 }
