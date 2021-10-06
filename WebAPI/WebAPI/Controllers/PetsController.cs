@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
         public async Task<ActionResult<Pet>> PutPet(Pet pet)
         {
             Pet newPet = await _petRepo.UpdatePet(pet);
-            return CreatedAtAction("Added new Pet", newPet);
+            return CreatedAtAction("Updated Pet", newPet);
         }
 
         // POST: api/Pets

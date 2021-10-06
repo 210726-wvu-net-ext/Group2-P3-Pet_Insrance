@@ -72,13 +72,13 @@ namespace WebAPI.Repositories
 
         public async Task<Pet> UpdatePet(Pet pet)
         {
-            Task<Pet> original = GetPetById(pet.Id);
-            original.Result.Breed = pet.Breed;
-            original.Result.Age = pet.Age;
-            original.Result.Location = pet.Location;
-            original.Result.InsurancePlan = pet.InsurancePlan;
-            original.Result.InsuranceMonthly = pet.InsuranceMonthly;
-            original.Result.UserId = pet.UserId;
+            var original = await _context.Pets.FirstOrDefaultAsync(p => p.Id == pet.Id);
+            original.Breed = pet.Breed;
+            original.Age = pet.Age;
+            original.Location = pet.Location;
+            original.InsurancePlan = pet.InsurancePlan;
+            original.InsuranceMonthly = pet.InsuranceMonthly;
+            original.UserId = pet.UserId;
             await _context.SaveChangesAsync();
             return pet;
         }
@@ -122,9 +122,10 @@ namespace WebAPI.Repositories
         }
         public async Task<InsurancePlan> GetQuote(Pet pet)
         {
+            var foundBreed = await _context.Breeds.FirstOrDefaultAsync(s => s.Species == pet.Breed);
             InsurancePlan plan = new InsurancePlan();
             plan.PetId = pet.Id;
-            var foundBreed = await _context.Breeds.FirstOrDefaultAsync(s => s.Species == pet.Breed);
+
             var baseCost = (pet.Age / foundBreed.AvgLifeSpan);
             var cost = (foundBreed.AvgLifeSpan * baseCost);
 
@@ -137,7 +138,7 @@ namespace WebAPI.Repositories
             }
             else if(cost > high)
             {
-                plan.SilverCost = Math.Round(new decimal(4.19) * foundBreed.Price,2);
+                plan.SilverCost = Math.Round(new decimal(4.19) * foundBreed.Price, 2);
                 plan.GoldCost = Math.Round(new decimal(6.09) * foundBreed.Price, 2);
             }
             else
