@@ -40,6 +40,8 @@ namespace WebAPI
                 options.LogTo(Console.WriteLine);
             });
 
+            services.AddScoped<IPet, PetRepository>();
+            //services.AddScoped<IBreed, BreedRepository>();
             services.AddScoped<IUser, UserRepository>();
 
             services.AddCors(c =>
