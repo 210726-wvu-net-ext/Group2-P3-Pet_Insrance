@@ -41,7 +41,7 @@ namespace WebAPI.Repositories
             return user;
         }
 
-
+        
         public User CheckUserCreds(User attempt)
         {
             User user = GetUserByEmail(attempt.Email);
