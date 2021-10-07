@@ -18,14 +18,12 @@ namespace WebAPI.Repositories
 
         public async Task<User> AddUser(User user)
         {
-            if(GetUserByEmail(user.Email) != null || GetUserByUsername(user.UserName) != null)
+            if (await GetUserByEmail(user.Email) == null && await GetUserByUsername(user.UserName) == null)
             {
-                return null;
-            }
-            await _context.Users.AddAsync(
+                await _context.Users.AddAsync(
                 new Entities.User
                 {
-                     
+
                     FirstName = user.FirstName,
                     LastName = user.LastName,
                     UserName = user.UserName,
@@ -34,12 +32,12 @@ namespace WebAPI.Repositories
                     Location = user.Location,
                     PhoneNumber = user.PhoneNumber,
                     Email = user.Email,
-                }
-            );
-
-            await _context.SaveChangesAsync();
-            User newUser = await GetUserByEmail(user.Email);
-            return newUser;
+                });
+                await _context.SaveChangesAsync();
+                User newUser = await GetUserByEmail(user.Email);
+                return newUser;
+            }
+            else return null;
         }
 
         /// <summary>
@@ -47,30 +45,49 @@ namespace WebAPI.Repositories
         /// </summary>
         /// <param name="attempt"></param>
         /// <returns></returns>
-        public async Task<User> CheckUserCreds(User attempt)
+        public async Task<User> CheckUserCreds(LoginRequest attempt)
         {
+            if(!attempt.Email.Contains('@'))
+            {
+                attempt.UserName = attempt.Email;
+            }
+            try
+            {
+                if(attempt.Email.Contains('@'))
+                {
+                    User user = await GetUserByEmail(attempt.Email);
+                    if (user != null)
+                    {
+                        if (user.Email == attempt.Email && user.Password == attempt.Password)
+                        {
+                            User foundUser = new User(user.Id, user.FirstName, user.LastName, user.UserName, user.Password, user.DoB, user.Location, user.PhoneNumber, user.Email);
+                            return foundUser;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            try
+            {
+                User user = await GetUserByUsername(attempt.Email);
+                if (user != null)
+                {
+                    if (user.UserName == attempt.UserName && user.Password == attempt.Password)
+                    {
+                        User foundUser = new User(user.Id, user.FirstName, user.LastName, user.UserName, user.Password, user.DoB, user.Location, user.PhoneNumber, user.Email);
+                        return foundUser;
+                    }
 
-            if(attempt.UserName == "")
-            {
-                User user = await GetUserByEmail(attempt.Email);
-                if (user.Email == attempt.Email && user.Password == attempt.Password)
-                {
-                    User foundUser = new User(user.Id, user.FirstName, user.LastName, user.UserName, user.Password, user.DoB, user.Location, user.PhoneNumber, user.Email);
-                    return foundUser;
                 }
-                else return null;
             }
-            else if(attempt.Email == "")
+            catch
             {
-                User user = await GetUserByUsername(attempt.UserName);
-                if (user.UserName == attempt.UserName && user.Password == attempt.Password)
-                {
-                    User foundUser = new User(user.Id, user.FirstName, user.LastName, user.UserName, user.Password, user.DoB, user.Location, user.PhoneNumber, user.Email);
-                    return foundUser;
-                }
-                else return null;
+
             }
-            else return null;
+            return null;
         }
 
         public async Task<User> GetUserByUsername(string userName)

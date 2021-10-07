@@ -13,6 +13,7 @@ namespace WebAPI.Repositories.Interfaces
         Task<Pet> GetPetById(int id);
         Task<List<Pet>> GetPetsByUserId(int id);
         Task<Pet>UpdatePet(Pet pet);
-        Task<string> CalculateInsurance(Pet pet);
+        Task<bool> CheckQualification(Pet pet);
+        Task<InsurancePlan> GetQuote(Pet lizard);
     }
 }

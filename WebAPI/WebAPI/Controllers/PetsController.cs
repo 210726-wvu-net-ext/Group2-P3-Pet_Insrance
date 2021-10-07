@@ -25,17 +25,17 @@ namespace WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<Pet>> GetPets(int id)
         {
-            var k = await _petRepo.GetPetsByUserId(id);
+            List<Pet> k = await _petRepo.GetPetsByUserId(id);
             try
             {
-                if(k.Count != 0)
+                if (k.Count != 0)
                 {
                     return Ok(k);
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                
+
             }
             return NotFound("No pets by user found");
         }
@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
         public async Task<ActionResult<Pet>> PutPet(Pet pet)
         {
             Pet newPet = await _petRepo.UpdatePet(pet);
-            return CreatedAtAction("Added new Pet", newPet);
+            return CreatedAtAction("Updated Pet", newPet);
         }
 
         // POST: api/Pets
@@ -55,7 +55,7 @@ namespace WebAPI.Controllers
         public async Task<ActionResult<Pet>> PostPet(Pet pet)
         {
             var attempt = await _petRepo.AddPet(pet);
-            
+
             if (attempt != null)
             {
                 return Ok(attempt);
@@ -66,20 +66,36 @@ namespace WebAPI.Controllers
             }
         }
 
-        // DELETE: api/Pets
-        [HttpDelete]
-        public async Task<IActionResult> DeletePet(Pet pet)
-        {
-            try
-            {
-                await _petRepo.DeletePet(pet);
 
-            }
-            catch (Exception e)
+        [HttpPost("QuotePets")]
+        public async Task<ActionResult<InsurancePlan>> QuotePets(List<Pet> pet)
+        {
+            List<InsurancePlan> list = new List<InsurancePlan>();
+            foreach (Pet lizard in pet)
             {
-                return BadRequest();
+                if (await _petRepo.CheckQualification(lizard))
+                {
+                    list.Add(await _petRepo.GetQuote(lizard));
+                }
             }
-            return Ok();
+            return Ok(list);
+        }
+
+            // DELETE: api/Pets
+            [HttpDelete]
+            public async Task<IActionResult> DeletePet(Pet pet)
+            {
+                try
+                {
+                    await _petRepo.DeletePet(pet);
+
+                }
+                catch (Exception e)
+                {
+                    return BadRequest();
+                }
+                return Ok();
+            }
         }
     }
-}
+
