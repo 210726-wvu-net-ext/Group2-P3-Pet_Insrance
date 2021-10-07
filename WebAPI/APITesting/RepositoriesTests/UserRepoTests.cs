@@ -3,19 +3,23 @@ using Xunit;
 using WebAPI.Repositories;
 using Moq;
 using WebAPI.Models;
+using System.Threading.Tasks;
 using WebAPI.Repositories.Interfaces;
 
 namespace APITesting.RepositoriesTests
 {
     public class UserRepoTests
     {
-        [Fact]
-        public void AddUser_ReturnsNull()
+        private readonly Mock<WebAPI.Entities.petinsuranceContext> _context;
+
+        public UserRepoTests()
         {
-            //arrange
+            _context = new Mock<WebAPI.Entities.petinsuranceContext>();
+            
+        }
+
             User testUser = new()
             {
-                Id = 0,
                 FirstName = "Bob",
                 LastName = "McTest",
                 UserName = "BobTheTester",
@@ -25,17 +29,16 @@ namespace APITesting.RepositoriesTests
                 PhoneNumber = "2101024321",
                 Email = "BobTheTester@aol.com",
             };
+        
+        [Fact]
+        public async Task AddUser_ReturnsNull()
+        {
+            var _userRepo = new Mock<IUser>();
+           _userRepo.Setup(r => r.AddUser(testUser)).Returns(obj);
 
-            var userRepo = new Mock<IUser>();
-            userRepo.Setup(x => x.AddUser()).Reutrns();
-            
+            await _userRepo.AddUser(testUser);
 
-            //act
-            
-
-
-            //assert
-            userRepo.Verify(r => r.AddUser(testUser));
+          /// Assert.IsType(WebAPI.Models.User, result);
         }
     }
 }
