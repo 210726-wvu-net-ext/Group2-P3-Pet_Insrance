@@ -14,6 +14,13 @@ namespace APITesting.ControllerTests
         private readonly UsersController _controller;
         private readonly Mock<LoginRequest> _loginRequest;
 
+        public UserControllerTests()
+        {
+            _repo = new Mock<IUser>();
+            _loginRequest = new Mock<LoginRequest>();
+            _controller = new UsersController(_repo.Object);
+        }
+
         User testUser = new()
         {
             Id = 1,
@@ -26,13 +33,6 @@ namespace APITesting.ControllerTests
             PhoneNumber = "2101024321",
             Email = "BobTheTester@aol.com",
         };
-
-        public UserControllerTests()
-        {
-            _repo = new Mock<IUser>();
-            _loginRequest = new Mock<LoginRequest>();
-            _controller = new UsersController(_repo.Object);
-        }
 
         /// <summary>
         /// Tests GetUser to check if result is type Task
