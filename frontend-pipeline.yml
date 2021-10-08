@@ -64,12 +64,16 @@ stages:
           repository: 'gecko/frontend'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
-      #Publish artifact
-      - task: PublishBuildArtifacts@1
+      #Bake Manifest
+      - task: KubernetesManifest@0
         inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-          ArtifactName: 'manifest'
-          publishLocation: 'Container'
+          action: 'bake'
+          namespace: 'gecko'
+          containers: |
+            gecko/frontend
+            gecko/backend
+          renderType: 'kompose'
+          dockerComposeFile: '**'
       #logout
       - task: Docker@2
         displayName: Logout
