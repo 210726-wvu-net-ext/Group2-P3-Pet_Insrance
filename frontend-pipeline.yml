@@ -64,16 +64,23 @@ stages:
           repository: 'gecko/frontend'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
-      #Bake Manifest
+      #Create Imagepull secret
       - task: KubernetesManifest@0
         inputs:
-          action: 'bake'
+          action: 'createSecret'
+          kubernetesServiceConnection: 'P3-Cluster-gecko-admin'
           namespace: 'gecko'
-          containers: |
-            gecko/frontend
-            gecko/backend
-          renderType: 'kompose'
-          dockerComposeFile: 'docker-compose.yml'
+          secretType: 'dockerRegistry'
+          secretName: 'geckofrontend'
+          dockerRegistryEndpoint: '2107-p3-acr-Group2-Pet Insurance'
+      #Deploy
+      - task: KubernetesManifest@0
+        inputs:
+          action: 'deploy'
+          kubernetesServiceConnection: 'P3-Cluster-gecko-admin'
+          namespace: 'gecko'
+          manifests: 'manifests/deployment.yml'
+          imagePullSecrets: 'geckofrontend'
       #logout
       - task: Docker@2
         displayName: Logout
