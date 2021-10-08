@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-    console.log("Hello from submit");
     let request: LoginRequest;
     
       request = {

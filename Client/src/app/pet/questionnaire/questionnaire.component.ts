@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AccountService } from 'src/app/account/account.service';
 
 @Component({
   selector: 'app-questionnaire',
@@ -7,9 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class QuestionnaireComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: AccountService, private formBuilder: FormBuilder) { }
+
+  form: FormGroup = new FormGroup(
+    {
+
+      breed: new FormControl(''),
+      state: new FormControl(''),
+    });
+
+
+
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      breed: [''],
+      state: [''],
+    })
   }
+
+  onSubmit() {
+    
+
+
+
+  }
+
+
+
+
 
 }
