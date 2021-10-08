@@ -10,6 +10,8 @@ namespace APITesting.RepositoriesTests
 {
     public class UserRepoTests
     {
+        
+        private readonly UserRepository _userRepo;
         private readonly Mock<WebAPI.Entities.petinsuranceContext> _context;
 
         public UserRepoTests()
@@ -18,7 +20,6 @@ namespace APITesting.RepositoriesTests
             
         }
 
-            User testUser = new()
             {
                 FirstName = "Bob",
                 LastName = "McTest",
@@ -29,19 +30,17 @@ namespace APITesting.RepositoriesTests
                 PhoneNumber = "2101024321",
                 Email = "BobTheTester@aol.com",
             };
-        
+
         /// Need to figure out how to make async work and return presumable a <Task>
 
 
         [Fact]
-        public async Task AddUser_NeedsToJustWorkInTheFirstPlace()
         {
             var _userRepo = new UserRepository(_context.Object);
           /// _userRepo.Setup(r => r.AddUser(testUser).Result).Returns();
 
             var result = _userRepo.AddUser(testUser);
 
-            
         }
     }
 }

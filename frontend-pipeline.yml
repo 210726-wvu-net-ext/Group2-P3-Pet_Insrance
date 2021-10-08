@@ -11,6 +11,7 @@ pool:
 
 variables: #Path to folders
   angular: '$(Build.SourcesDirectory)/Client'
+  cReg: '2107-p3-acr-Group2-Pet Insurance'
 
 stages:
 - stage: Installs_Builds
@@ -43,3 +44,29 @@ stages:
           command: 'build'
           project: '$(angular)'
           DisableAnalytics: false
+- stage: Docker
+  jobs:
+  #Build and eventally deploy a docker container
+    - job: Docker_Build
+      displayName: Docker Build & Push
+      steps:
+      #Login
+      - task: Docker@2
+        displayName: Login
+        inputs:
+          containerRegistry: $(cReg)
+          command: 'login'
+      #Build
+      - task: Docker@2
+        displayName: Build & Push
+        inputs:
+          containerRegistry: '$(cReg)'
+          repository: 'gecko/frontend'
+          command: 'buildAndPush'
+          Dockerfile: '**/Dockerfile'
+      #logout
+      - task: Docker@2
+        displayName: Logout
+        inputs:
+          containerRegistry: $(cReg)
+          command: 'logout'
