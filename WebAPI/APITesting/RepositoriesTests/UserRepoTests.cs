@@ -10,16 +10,15 @@ namespace APITesting.RepositoriesTests
 {
     public class UserRepoTests
     {
-        
-        private readonly UserRepository _userRepo;
         private readonly Mock<WebAPI.Entities.petinsuranceContext> _context;
 
         public UserRepoTests()
         {
             _context = new Mock<WebAPI.Entities.petinsuranceContext>();
-            
         }
 
+            
+            User testUser = new()
             {
                 FirstName = "Bob",
                 LastName = "McTest",
@@ -31,19 +30,21 @@ namespace APITesting.RepositoriesTests
                 Email = "BobTheTester@aol.com",
             };
 
-        /// Need to figure out how to make async work and return presumable a <Task>
-
+        /// Need to find some assertion that works. No returns types valid in current context
 
         [Fact]
+        public void AddUser_NeedsToJustWorkAtAll()
         {
+
             var _userRepo = new UserRepository(_context.Object);
-          /// _userRepo.Setup(r => r.AddUser(testUser).Result).Returns();
-
             var result = _userRepo.AddUser(testUser);
-
+            
+           
         }
     }
 }
+
+ 
 
 //public User AddUser(User user)
 //{
