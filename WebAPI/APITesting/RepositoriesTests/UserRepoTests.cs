@@ -30,15 +30,18 @@ namespace APITesting.RepositoriesTests
                 Email = "BobTheTester@aol.com",
             };
         
+        /// Need to figure out how to make async work and return presumable a <Task>
+
+
         [Fact]
-        public async Task AddUser_ReturnsNull()
+        public async Task AddUser_NeedsToJustWorkInTheFirstPlace()
         {
-            var _userRepo = new Mock<IUser>();
-           _userRepo.Setup(r => r.AddUser(testUser)).Returns(obj);
+            var _userRepo = new UserRepository(_context.Object);
+          /// _userRepo.Setup(r => r.AddUser(testUser).Result).Returns();
 
-            await _userRepo.AddUser(testUser);
+            var result = _userRepo.AddUser(testUser);
 
-          /// Assert.IsType(WebAPI.Models.User, result);
+            
         }
     }
 }
