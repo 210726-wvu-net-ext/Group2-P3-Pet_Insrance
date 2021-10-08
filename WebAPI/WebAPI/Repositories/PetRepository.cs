@@ -131,20 +131,20 @@ namespace WebAPI.Repositories
 
             decimal low = new decimal (.34);
             decimal high = new decimal (.66);
-            if (baseCost < low)
+            if (cost < low)
             {
                 plan.SilverCost = Math.Round(new decimal(.013) * foundBreed.Price, 2);
                 plan.GoldCost = Math.Round(new decimal(.024) * foundBreed.Price, 2);
             }
-            else if(baseCost > high)
+            else if(cost > high)
             {
                 plan.SilverCost = Math.Round(new decimal(.039) * foundBreed.Price, 2);
-                plan.GoldCost = Math.Round(new decimal(.0609) * foundBreed.Price, 2);
+                plan.GoldCost = Math.Round(new decimal(.058) * foundBreed.Price, 2);
             }
             else
             {
-                plan.SilverCost = Math.Round(new decimal(2.53) * foundBreed.Price, 2);
-                plan.GoldCost = Math.Round(new decimal(3.73) * foundBreed.Price, 2);
+                plan.SilverCost = Math.Round(new decimal(.023) * foundBreed.Price, 2);
+                plan.GoldCost = Math.Round(new decimal(.035) * foundBreed.Price, 2);
             }
             return plan;
         }
