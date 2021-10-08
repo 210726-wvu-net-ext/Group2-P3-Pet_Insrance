@@ -126,25 +126,25 @@ namespace WebAPI.Repositories
             InsurancePlan plan = new InsurancePlan();
             plan.PetId = pet.Id;
 
-            var baseCost = (pet.Age / foundBreed.AvgLifeSpan);
-            var cost = (foundBreed.AvgLifeSpan * baseCost);
+            var baseCost = pet.Age / foundBreed.AvgLifeSpan;
+            var cost = foundBreed.Price * baseCost;
 
             decimal low = new decimal (.34);
             decimal high = new decimal (.66);
             if (cost < low)
             {
-                plan.SilverCost = Math.Round(new decimal(1.4) * foundBreed.Price, 2);
-                plan.GoldCost = Math.Round(new decimal(2.5) * foundBreed.Price, 2);
+                plan.SilverCost = Math.Round(new decimal(.013) * foundBreed.Price, 2);
+                plan.GoldCost = Math.Round(new decimal(.024) * foundBreed.Price, 2);
             }
             else if(cost > high)
             {
-                plan.SilverCost = Math.Round(new decimal(4.19) * foundBreed.Price, 2);
-                plan.GoldCost = Math.Round(new decimal(6.09) * foundBreed.Price, 2);
+                plan.SilverCost = Math.Round(new decimal(.039) * foundBreed.Price, 2);
+                plan.GoldCost = Math.Round(new decimal(.058) * foundBreed.Price, 2);
             }
             else
             {
-                plan.SilverCost = Math.Round(new decimal(2.53) * foundBreed.Price, 2);
-                plan.GoldCost = Math.Round(new decimal(3.73) * foundBreed.Price, 2);
+                plan.SilverCost = Math.Round(new decimal(.023) * foundBreed.Price, 2);
+                plan.GoldCost = Math.Round(new decimal(.035) * foundBreed.Price, 2);
             }
             return plan;
         }
