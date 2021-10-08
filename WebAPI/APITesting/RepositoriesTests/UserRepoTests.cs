@@ -17,57 +17,27 @@ namespace APITesting.RepositoriesTests
             _context = new Mock<WebAPI.Entities.petinsuranceContext>();
         }
 
-            
-            User testUser = new()
-            {
-                FirstName = "Bob",
-                LastName = "McTest",
-                UserName = "BobTheTester",
-                Password = "CanWeTestIt",
-                DoB = "1999/12/07",
-                Location = "Hawaii",
-                PhoneNumber = "2101024321",
-                Email = "BobTheTester@aol.com",
-            };
 
-        /// Need to find some assertion that works. No returns types valid in current context
+        User testUser = new()
+        {
+            FirstName = "Bob",
+            LastName = "McTest",
+            UserName = "BobTheTester",
+            Password = "CanWeTestIt",
+            DoB = "1999/12/07",
+            Location = "Hawaii",
+            PhoneNumber = "2101024321",
+            Email = "BobTheTester@aol.com",
+        };
 
         [Fact]
-        public void AddUser_NeedsToJustWorkAtAll()
+        public void AddUser_TestIfType_Task()
         {
 
             var _userRepo = new UserRepository(_context.Object);
-            var result = _userRepo.AddUser(testUser);
-            
-           
+            var result = _userRepo.AddUser(testUser as User);
+
+            Assert.IsAssignableFrom<Task>(result);
         }
     }
 }
-
- 
-
-//public User AddUser(User user)
-//{
-//    if (GetUserById(user.Id) != null)
-//    {
-//        return null;
-//    }
-//    _context.Users.Add(
-//        new Entities.User
-//        {
-
-//            FirstName = user.FirstName,
-//            LastName = user.LastName,
-//            UserName = user.UserName,
-//            Password = user.Password,
-//            DoB = user.DoB,
-//            Location = user.Location,
-//            PhoneNumber = user.PhoneNumber,
-//            Email = user.Email,
-//        }
-//    );
-
-//    _context.SaveChanges();
-//    User newUser = GetUserByEmail(user.Email);
-//    return user;
-//}
