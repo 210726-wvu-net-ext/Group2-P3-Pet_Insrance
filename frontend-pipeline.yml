@@ -67,7 +67,7 @@ stages:
       #Publish artifact
       - task: PublishPipelineArtifact@1
         inputs:
-          targetPath: '$(Pipeline.Workspace)'
+          targetPath: '$(Pipeline.Workspace)/deployment.yml'
           artifact: 'manifest'
           publishLocation: 'pipeline'
       #logout
