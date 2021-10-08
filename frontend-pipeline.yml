@@ -73,7 +73,7 @@ stages:
             gecko/frontend
             gecko/backend
           renderType: 'kompose'
-          dockerComposeFile: '**'
+          dockerComposeFile: 'docker-compose.yml'
       #logout
       - task: Docker@2
         displayName: Logout
