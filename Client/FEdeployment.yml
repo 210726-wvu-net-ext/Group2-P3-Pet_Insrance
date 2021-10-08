@@ -7,7 +7,7 @@ spec:
   template:
     metadata:
       labels:
-        label-key : label-value  
+        label-key : gecko  
     spec:
       containers:
         - name: gecko-front-end
