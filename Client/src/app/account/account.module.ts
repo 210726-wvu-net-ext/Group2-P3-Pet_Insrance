@@ -25,6 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AccountRoutingModule
   ],
-  providers: [AccountService]
+  providers: []
 })
 export class AccountModule { }
