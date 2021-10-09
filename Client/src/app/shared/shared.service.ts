@@ -6,7 +6,7 @@ import { LoginRequest } from '../account/loginRequest';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { User } from '../account/user';
-
+import { Pet } from '../pet/pet';
 
 
 
@@ -26,7 +26,11 @@ export class SharedService {
     console.log("registerUser", user);
     return this.https.post<User>(this.APIUrl + '/Users/Register', user);
   }
+  addPet(pet: Pet): Observable<Pet[]> {
 
+    pet.userId
+    return this.https.post<Pet[]>(this.APIUrl + '/Pets', pet);
+  }
 
 
 

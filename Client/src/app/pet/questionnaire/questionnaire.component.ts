@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AccountService } from 'src/app/account/account.service';
 import { User } from 'src/app/account/user';
+import { SharedService } from 'src/app/shared/shared.service';
+import { PetService } from '../pet.service';
 
 
 @Component({
@@ -10,7 +12,7 @@ import { User } from 'src/app/account/user';
   styleUrls: ['./questionnaire.component.css']
 })
 export class QuestionnaireComponent implements OnInit {
-  constructor(private service: AccountService, private formBuilder: FormBuilder,) { }
+  constructor(private acc: AccountService, private formBuilder: FormBuilder, private service: SharedService) { }
 
   form: FormGroup = new FormGroup(
     {
@@ -40,15 +42,13 @@ export class QuestionnaireComponent implements OnInit {
       location: [''],
       userId: ['']
     })
-    debugger;
-    this.service.user$.subscribe(p =>
+    this.acc.user$.subscribe(p =>
 
       console.log("inside q", p?.id));
     //results in null
   }
 
   onSubmit() {
-
 
     //console.log(this.form.value);
 
