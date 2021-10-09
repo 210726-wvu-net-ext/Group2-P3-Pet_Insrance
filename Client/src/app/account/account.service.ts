@@ -20,27 +20,15 @@ export class AccountService {
   private userSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
   user$: Observable<User | null> = this.userSubject.asObservable().pipe(shareReplay(1));
 
-  constructor(private sharedService: SharedService, private https: HttpClient, private router: Router) {
-    debugger;
-  }
+  constructor(private sharedService: SharedService, private https: HttpClient, private router: Router) { }
 
   init(): void {
     const serializedUser: string | null = localStorage.getItem('user');
     if (serializedUser) {
       const localUser: User = JSON.parse(serializedUser)
       this.userSubject.next(localUser);
-      // this.user$.subscribe(p => {
-      //   console.log("inside init", p?.id);
-      //results in 2
-      // })
     }
   }
-  // loginUser(user: LoginRequest)
-  // {
-  //   console.log(user);
-  //   this.sharedService.logInUser(user);
-  // }
-
 
   logIn(user: LoginRequest) {
     this.sharedService.logInUser(user).subscribe((user: User | null) => {

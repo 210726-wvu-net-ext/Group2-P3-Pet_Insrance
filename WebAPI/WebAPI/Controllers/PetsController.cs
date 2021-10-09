@@ -22,7 +22,7 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/Pets
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Pet>> GetPets(int id)
         {
             List<Pet> k = await _petRepo.GetPetsByUserId(id);
@@ -89,13 +89,16 @@ namespace WebAPI.Controllers
                 {
                     await _petRepo.DeletePet(pet);
 
-                }
-                catch (Exception e)
+                } catch (Exception e)
                 {
-                    return BadRequest();
+
                 }
-                return Ok();
+            return Ok();
+                
+                
+
             }
         }
     }
+
 

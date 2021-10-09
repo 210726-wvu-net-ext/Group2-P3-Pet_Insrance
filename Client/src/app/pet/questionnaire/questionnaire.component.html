@@ -94,6 +94,13 @@
                     <button type="submit" class="btn btn-outline-primary" style="padding: 15px;">Get a Quote</button>
                 </div>
             </form>
+            <ul>
+                <li *ngFor="let pet of pets">
+                    {{pet.breed}}
+                    {{pet.age}}
+                    {{pet.location}}
+                </li>
+            </ul>
         </div>
     </div>
 </div>
