@@ -93,7 +93,7 @@ stages:
       #Publish artifact
       - task: PublishPipelineArtifact@1
         inputs:
-          targetPath: '$(angular)/WebAPI.yml'
+          targetPath: '$(sDir)/WebAPI.yml'
           artifact: 'manifest'
           publishLocation: 'pipeline'
       #logout
