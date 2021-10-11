@@ -8,6 +8,8 @@ import { PlansComponent } from '../pet/plans/plans.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountService } from './account.service';
 import { HttpClientModule } from '@angular/common/http';
+import { QuoteComponent } from '../pet/quote/quote.component';
+import { PurchaseComponent } from '../pet/purchase/purchase.component';
 
 
 
@@ -16,7 +18,9 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     QuestionnaireComponent,
-    PlansComponent
+    PlansComponent,
+    QuoteComponent,
+    PurchaseComponent
   ],
   imports: [
     FormsModule,
