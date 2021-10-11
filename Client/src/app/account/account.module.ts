@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuoteComponent } from '../pet/quote/quote.component';
 import { PurchaseComponent } from '../pet/purchase/purchase.component';
 import { PurchaseStatusComponent } from '../pet/purchase-status/purchase-status.component';
+import { CustAccountComponent } from './cust-account/cust-account.component';
 
 
 
@@ -22,7 +23,8 @@ import { PurchaseStatusComponent } from '../pet/purchase-status/purchase-status.
     PlansComponent,
     QuoteComponent,
     PurchaseComponent,
-    PurchaseStatusComponent
+    PurchaseStatusComponent,
+    CustAccountComponent
   ],
   imports: [
     FormsModule,
