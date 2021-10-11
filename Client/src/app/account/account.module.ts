@@ -12,6 +12,8 @@ import { QuoteComponent } from '../pet/quote/quote.component';
 import { PurchaseComponent } from '../pet/purchase/purchase.component';
 import { PurchaseStatusComponent } from '../pet/purchase-status/purchase-status.component';
 import { CustAccountComponent } from './cust-account/cust-account.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 
@@ -24,7 +26,9 @@ import { CustAccountComponent } from './cust-account/cust-account.component';
     QuoteComponent,
     PurchaseComponent,
     PurchaseStatusComponent,
-    CustAccountComponent
+    CustAccountComponent,
+    ContactUsComponent,
+    AboutUsComponent
   ],
   imports: [
     FormsModule,
