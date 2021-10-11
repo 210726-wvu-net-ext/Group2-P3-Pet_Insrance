@@ -33,6 +33,6 @@ import { CustAccountComponent } from './cust-account/cust-account.component';
     HttpClientModule,
     AccountRoutingModule
   ],
-  providers: [AccountService]
+  providers: []
 })
 export class AccountModule { }

@@ -24,27 +24,29 @@
             up</a>.</p>
 </form> -->
 <div class="container">
-    <div class="row">
-      <div class="col-mb-6">
-        <div class="card">
-          <div class="text center">
-            <h1>Login</h1>
-            <h6>Please enter you credentials.</h6>
-          </div>
-            <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
-              <div class="mb-3">
-                <label for="email" class="form-label">Email address</label>
-                <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
-              </div>
-              <button type="submit" class="btn btn-primary" routerLink="/account/cust-account">Login</button>
-            </form>
-            <a style="margin-top: 10px;" routerLink="/account/register">Not registered? Register Here.</a>
+  <div class="row">
+    <div class="col-mb-6">
+      <div class="card">
+        <div class="text center">
+          <h1>Login</h1>
+          <h6>Please enter you credentials.</h6>
         </div>
+        <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <a style="margin-top: 10px;" routerLink="/account/register">Not registered? Register Here.</a>
+      </div>
       </div>
     </div>
   </div>
+</div>

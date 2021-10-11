@@ -78,7 +78,7 @@
             <h6>Please Register.</h6>
           </div>
           
-            <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
               <div class="mb-3">
                 <!-- <label for="exampleInputPassword1" class="form-label">First Name</label> -->
                 <input formControlName="firstName" type="text" class="form-control" id="exampleInputPassword1" placeholder="First Name">
