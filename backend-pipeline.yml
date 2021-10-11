@@ -12,6 +12,8 @@ pool:
 variables: #Path to folders
   sDir: 'WebAPI'
   solution: 'WebAPI/*.sln'
+  cReg: '2107-p3-acr-Group2-Pet Insurance'
+
 
 stages:
 - stage: DotNet_Sonar
@@ -71,10 +73,25 @@ stages:
   jobs:
   #Build and eventally deploy a docker container
     - job: Docker_Build
-      displayName: Docker Build
+      displayName: Docker Build & Push
       steps:
+      #Login
+      - task: Docker@2
+        displayName: Login
+        inputs:
+          containerRegistry: $(cReg)
+          command: 'login'
       #Build
       - task: Docker@2
+        displayName: Build & Push
         inputs:
-          command: 'build'
+          containerRegistry: '$(cReg)'
+          repository: 'gecko/backend'
+          command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
+      #logout
+      - task: Docker@2
+        displayName: Logout
+        inputs:
+          containerRegistry: $(cReg)
+          command: 'logout'
