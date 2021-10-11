@@ -55,8 +55,13 @@ stages:
       - task: CmdLine@2
         displayName: Dotnet Tests
         inputs:
-          script: 'dotnet test --configuration Release'
+          script: dotnet test
+            --configuration Release
+            --collect:"XPlat Code Coverage"
+            --results-directory $(Agent.TempDirectory)
+            --DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           workingDirectory: $(sDir)
+        continueOnError: true
       # Force dotnet 3.1
       - task: UseDotNet@2
         displayName: Dotnet SDK 3
