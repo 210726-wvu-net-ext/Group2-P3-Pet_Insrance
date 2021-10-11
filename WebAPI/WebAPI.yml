@@ -1,18 +1,20 @@
 apiVersion: v1
+kind: Namespace
+metadata:
+  name: gecko
+
+---
+apiVersion: v1
 kind: Service
 metadata:
-  name: gecko-backend
-  labels:
-    app: gecko
-    role: api
+  annotations:
+    service.beta.kubernetes.io/azure-dns-label-name: gecko-api
+  name: azure-load-balancer
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: gecko
     role: api
-  ports:
-  - port: 80
-    nodePort: 30001
 
 ---
 apiVersion: apps/v1
