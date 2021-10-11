@@ -18,7 +18,7 @@ stages:
   #Runs NPM Installs
   jobs:
     - job: Main
-      displayName: Install_Build
+      displayName: 'NG Build and Test'
       steps:
     #Install Node
       - task: NodeTool@0
@@ -51,6 +51,23 @@ stages:
           script: 'npx ng test --browsers=ChromeHeadless --code-coverage --watch=false'
           workingDirectory: $(angular)
         continueOnError: true #Does not interupt the pipeline if the tests fail
+    #Sonar Cloud Steps
+      - task: SonarCloudPrepare@1
+        inputs:
+          SonarCloud: 'Insurance UI Scanner'
+          organization: '210726-wvu-net-ext'
+          scannerMode: 'CLI'
+          configMode: 'manual'
+          cliProjectKey: '210726-wvu-net-ext_Group2-P3-Pet_UI'
+          cliSources: '$(angular)/src'
+          extraProperties: |
+            sonar.javascript.lcov.reportPaths=client/coverage/client/lcov.info
+            sonar.coverage.exclusions=**/*.spec.ts
+      - task: SonarCloudAnalyze@1
+        displayName: sonar run analysis
+
+      - task: SonarCloudPublish@1
+        displayName: sonar publish analysis result
 
 - stage: Docker
   jobs:
