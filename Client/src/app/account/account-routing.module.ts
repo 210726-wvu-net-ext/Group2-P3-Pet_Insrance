@@ -7,6 +7,7 @@ import { QuestionnaireComponent } from '../pet/questionnaire/questionnaire.compo
 import { PlansComponent } from '../pet/plans/plans.component';
 import { QuoteComponent } from '../pet/quote/quote.component';
 import { PurchaseComponent } from '../pet/purchase/purchase.component';
+import { PurchaseStatusComponent } from '../pet/purchase-status/purchase-status.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'questionnaire', pathMatch:'full'},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'questionnaire', component: QuestionnaireComponent},
   {path: 'plans', component: PlansComponent},
   {path: 'quote', component: QuoteComponent},
-  {path: 'purchase', component: PurchaseComponent}
+  {path: 'purchase', component: PurchaseComponent},
+  {path: 'purchase-status', component: PurchaseStatusComponent}
 ];
 
 @NgModule({
