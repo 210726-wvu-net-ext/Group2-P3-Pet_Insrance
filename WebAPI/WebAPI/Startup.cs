@@ -22,7 +22,6 @@ namespace WebAPI
 {
     public class Startup
     {
-        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -44,14 +43,10 @@ namespace WebAPI
             //services.AddScoped<IBreed, BreedRepository>();
             services.AddScoped<IUser, UserRepository>();
 
-            services.AddCors(options =>
+            services.AddCors(c =>
             {
-                    options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
-                    {
-                        builder.WithOrigins("https://localhost:44368",
-                                            "http://gecko-ui.eastus.cloudapp.azure.com"
-                    ).WithHeaders("*").AllowAnyMethod();
-                });
+                c.AddPolicy("AllowAll", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                
             });
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -63,6 +58,9 @@ namespace WebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -70,8 +68,6 @@ namespace WebAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
 
-            app.UseCors(MyAllowSpecificOrigins);
-            
             app.UseHttpsRedirection();
 
             app.UseRouting();
