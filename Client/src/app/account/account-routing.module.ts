@@ -9,6 +9,8 @@ import { QuoteComponent } from '../pet/quote/quote.component';
 import { PurchaseComponent } from '../pet/purchase/purchase.component';
 import { PurchaseStatusComponent } from '../pet/purchase-status/purchase-status.component';
 import { CustAccountComponent } from './cust-account/cust-account.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
   {path: '', redirectTo:'questionnaire', pathMatch:'full'},
@@ -19,7 +21,9 @@ const routes: Routes = [
   {path: 'quote', component: QuoteComponent},
   {path: 'purchase', component: PurchaseComponent},
   {path: 'purchase-status', component: PurchaseStatusComponent},
-  {path: 'cust-account', component: CustAccountComponent}
+  {path: 'cust-account', component: CustAccountComponent},
+  {path: 'contact-us', component: ContactUsComponent},
+  {path: 'about-us', component: AboutUsComponent}
 ];
 
 @NgModule({
