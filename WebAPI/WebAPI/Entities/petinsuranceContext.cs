@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using WebAPI.Models;
 
 #nullable disable
 
@@ -36,7 +35,7 @@ namespace WebAPI.Entities
 
                 entity.Property(e => e.Price).HasColumnType("decimal(6, 2)");
 
-                                entity.Property(e => e.Species)
+                entity.Property(e => e.Species)
                     .IsRequired()
                     .HasMaxLength(255)
                     .IsUnicode(false);
@@ -91,6 +90,11 @@ namespace WebAPI.Entities
             modelBuilder.Entity<State>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.QualifiedLizards)
+                    .IsRequired()
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.StateName)
                     .IsRequired()
@@ -147,7 +151,5 @@ namespace WebAPI.Entities
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-        public DbSet<WebAPI.Models.Breed> Breed { get; set; }
     }
 }
