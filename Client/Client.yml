@@ -43,7 +43,7 @@ spec:
       - name: geckofront
       containers:
       - name: ui
-        image: gecko/frontend:latest
+        image: bacoordinationp3.azurecr.io/gecko/frontend:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 4200
