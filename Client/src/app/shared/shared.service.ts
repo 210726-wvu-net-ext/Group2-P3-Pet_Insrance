@@ -27,18 +27,13 @@ export class SharedService {
     return this.https.post<User>(this.APIUrl + '/Users/Register', user);
   }
   addPet(pet: Pet): Observable<Pet[]> {
-
-    pet.userId
+    console.log(pet);
     return this.https.post<Pet[]>(this.APIUrl + '/Pets', pet);
   }
-
-
-
-
+  getPets(user: User): Observable<Pet[]> {
+    return this.https.get<Pet[]>(this.APIUrl + `/Pets/${user.id}`);
+  }
   logInUser(loginRequest: LoginRequest): Observable<User> {
-    console.log(this.APIUrl + '/Users/Login');
-    console.log(loginRequest);
     return this.https.post<User>(this.APIUrl + '/Users/Login', loginRequest);
-
   }
 }
