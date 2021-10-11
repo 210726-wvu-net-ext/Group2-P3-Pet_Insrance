@@ -10,23 +10,23 @@ import { LoginRequest } from '../loginRequest';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private service :AccountService, private formBuilder: FormBuilder) { }
+  constructor(private service: AccountService, private formBuilder: FormBuilder) { }
 
 
 
-  form: FormGroup = new FormGroup ( 
+  form: FormGroup = new FormGroup(
     {
       userName: new FormControl(''),
       password: new FormControl(''),
       email: new FormControl('')
-    }); 
-    
+    });
+
 
 
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      userName:[''],
+      userName: [''],
       password: [''],
       email: ['']
     })
@@ -35,16 +35,15 @@ export class LoginComponent implements OnInit {
 
 
   onSubmit() {
-    console.log("Hello from submit");
     let request: LoginRequest;
-    
-      request = {
-        userName: this.form.value.userName,
-        email: this.form.value.email,
-        password: this.form.value.password
-      }
+
+    request = {
+      userName: this.form.value.userName,
+      email: this.form.value.email,
+      password: this.form.value.password
+    }
     console.log(request);
-    
+
     this.service.logIn(request);
   }
 }
