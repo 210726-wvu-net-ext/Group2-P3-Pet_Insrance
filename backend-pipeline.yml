@@ -59,7 +59,8 @@ stages:
             --configuration Release
             --collect:"XPlat Code Coverage"
             --results-directory $(Agent.TempDirectory)
-            --DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
+            --
+            DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           workingDirectory: $(sDir)
         continueOnError: true
       # Force dotnet 3.1
