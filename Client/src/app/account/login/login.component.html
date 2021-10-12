@@ -35,14 +35,16 @@
           <div class="mb-3">
             <label for="email" class="form-label">Email address</label>
             <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1"
-              aria-describedby="emailHelp">
+              aria-describedby="emailHelp" placeholder="Email">
+              <span class="text-danger" *ngIf="form.controls['email'].dirty && form.hasError('required','email')">*Required</span>
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
           </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <span class="text-danger" *ngIf="form.controls['password'].dirty && form.hasError('required','password')">*Required</span>
           </div>
-          <button routerLink="/account/cust-account" type="submit" class="btn btn-primary">Login</button>
+          <button routerLink="/account/cust-account" [disabled]="!form.valid" type="submit" class="btn btn-primary">Login</button>
         </form>
         <a style="margin-top: 10px;" routerLink="/account/register">Not registered? Register Here.</a>
       </div>
