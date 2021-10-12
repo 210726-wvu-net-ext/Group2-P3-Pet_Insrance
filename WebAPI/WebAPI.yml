@@ -47,7 +47,7 @@ spec:
       - name: geckoback
       containers:
       - name: api
-        image: bacoordinationp3.azurecr.io/gecko/backend:latest
+        image: bacoordinationp3.azurecr.io/gecko/backend:1.0.0
         imagePullPolicy: Always
         ports:
         - containerPort: 4200
