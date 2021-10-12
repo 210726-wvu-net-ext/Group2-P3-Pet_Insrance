@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { User } from '../account/user';
 import { Pet } from '../pet/pet';
+import { quoteDisplay } from '../pet/quoteDisplay';
 
 
 
@@ -33,6 +34,12 @@ export class SharedService {
   registerUser(user: User): Observable<User> {
     return this.https.post<User>(this.APIUrl + '/Users/Register', user);
   }
+
+  getQuote(pets: Pet[]): Observable<quoteDisplay[]> {
+    console.log("inside serv", pets)
+    return this.https.post<quoteDisplay[]>(this.APIUrl + '/Pets/QuotePets', pets);
+  }
+
 
   addPet(pet: Pet): Observable<Pet[]> {
     console.log(pet);

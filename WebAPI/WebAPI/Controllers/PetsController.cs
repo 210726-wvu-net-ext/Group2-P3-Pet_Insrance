@@ -58,9 +58,6 @@ namespace WebAPI.Controllers
             return Ok("Pets have been paid for");
         }
 
-
-
-
         // POST: api/Pets
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -81,7 +78,7 @@ namespace WebAPI.Controllers
 
         [HttpPost("QuotePets")]
         public async Task<ActionResult<InsurancePlan>> QuotePets(List<Pet> pet)
-        {
+     {
             List<InsurancePlan> list = new List<InsurancePlan>();
             foreach (Pet lizard in pet)
             {
@@ -89,6 +86,7 @@ namespace WebAPI.Controllers
                 {
                     list.Add(await _petRepo.GetQuote(lizard));
                 }
+
             }
             return Ok(list);
         }
@@ -106,9 +104,6 @@ namespace WebAPI.Controllers
 
                 }
             return Ok();
-                
-                
-
             }
         }
     }
