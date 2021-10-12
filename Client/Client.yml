@@ -28,7 +28,11 @@ metadata:
     app: gecko
     role: ui
 spec:
-  replicas: 2
+  strategy:
+    type: RollingUpdate
+      maxSurge: 2
+      maxUnavailable: 1
+  replicas: 3
   selector:
     matchLabels:
       app: gecko
