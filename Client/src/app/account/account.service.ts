@@ -13,10 +13,6 @@ import { User } from './user';
 })
 export class AccountService {
 
-  showUsers() {
-    this.sharedService.getUsers();
-  }
-
   private userSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
   user$: Observable<User | null> = this.userSubject.asObservable().pipe(shareReplay(1));
 

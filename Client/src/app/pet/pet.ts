@@ -5,5 +5,6 @@ export interface Pet {
     location: string,
     insurancePlan: string,
     insuranceMonthly: string,
-    userId: number
+    userId: number,
+    isInsured: boolean,
 }

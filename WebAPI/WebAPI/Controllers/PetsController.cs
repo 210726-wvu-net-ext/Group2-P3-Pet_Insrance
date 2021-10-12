@@ -49,6 +49,18 @@ namespace WebAPI.Controllers
             return CreatedAtAction("Updated Pet", newPet);
         }
 
+
+
+        [HttpPut("Purchase")]
+        public async Task<ActionResult<Pet>> PayForPets(List<Pet> pets)
+        {
+            await _petRepo.PayPets(pets);
+            return Ok("Pets have been paid for");
+        }
+
+
+
+
         // POST: api/Pets
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]

@@ -62,6 +62,8 @@ namespace WebAPI.Entities
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
+                entity.Property(e => e.IsInsured).HasColumnName("isInsured");
+
                 entity.Property(e => e.Location)
                     .IsRequired()
                     .HasMaxLength(100)
