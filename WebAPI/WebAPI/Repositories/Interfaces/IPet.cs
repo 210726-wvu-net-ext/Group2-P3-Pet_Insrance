@@ -15,5 +15,6 @@ namespace WebAPI.Repositories.Interfaces
         Task<Pet>UpdatePet(Pet pet);
         Task<bool> CheckQualification(Pet pet);
         Task<InsurancePlan> GetQuote(Pet lizard);
+        Task PayPets(List<Pet> pets);
     }
 }

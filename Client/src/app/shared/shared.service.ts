@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { User } from '../account/user';
 import { Pet } from '../pet/pet';
+import { quoteDisplay } from '../pet/quoteDisplay';
 
 
 
@@ -14,25 +15,41 @@ import { Pet } from '../pet/pet';
   providedIn: 'root'
 })
 export class SharedService {
-
   private readonly APIUrl = environment.dbURL;
-
   constructor(private https: HttpClient) { }
 
-  getUsers(): Observable<User[]> {
-    return this.https.get<User[]>(this.APIUrl + '/Users/2');
+
+  payForInsurance(pets: Pet[]): Observable<Pet[]> {
+    console.log("inside service");
+    var k = this.https.put<Pet[]>(this.APIUrl + '/Pets/Purchase', pets)
+    k.subscribe(p => {
+      console.log(p);
+      return p;
+    }, err => {
+      return err;
+    })
+    return k;
   }
+
   registerUser(user: User): Observable<User> {
-    console.log("registerUser", user);
     return this.https.post<User>(this.APIUrl + '/Users/Register', user);
   }
+
+  getQuote(pets: Pet[]): Observable<quoteDisplay[]> {
+    console.log("inside serv", pets)
+    return this.https.post<quoteDisplay[]>(this.APIUrl + '/Pets/QuotePets', pets);
+  }
+
+
   addPet(pet: Pet): Observable<Pet[]> {
     console.log(pet);
     return this.https.post<Pet[]>(this.APIUrl + '/Pets', pet);
   }
+
   getPets(user: User): Observable<Pet[]> {
     return this.https.get<Pet[]>(this.APIUrl + `/Pets/${user.id}`);
   }
+
   logInUser(loginRequest: LoginRequest): Observable<User> {
     return this.https.post<User>(this.APIUrl + '/Users/Login', loginRequest);
   }

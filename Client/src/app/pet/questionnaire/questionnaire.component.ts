@@ -30,9 +30,15 @@ export class QuestionnaireComponent implements OnInit {
       console.log(p);
       if (p) {
         this.service.getPets(p).subscribe(x => {
-          console.log(x);
+          console.log("wooo", x);
           this.pets = x;
+          console.log("inside init", this.pets)
         })
+      }
+      else {
+        const serializedPets: string | null = localStorage.getItem('pets');
+        if (serializedPets)
+          this.pets = JSON.parse(serializedPets);
       }
     });
 
@@ -43,8 +49,6 @@ export class QuestionnaireComponent implements OnInit {
       location: [''],
       userId: ['']
     })
-    this.acc.user$.subscribe(p =>
-      console.log("inside q", p));
   }
 
   onSubmit() {
@@ -58,15 +62,25 @@ export class QuestionnaireComponent implements OnInit {
       insurancePlan: "",
       insuranceMonthly: "",
     };
+    console.log(pet.age);
+    if (pet.age == null) {
+      pet.age = 12.5;
+    }
     this.pets.push(pet as Pet);
 
     this.acc.user$.subscribe(user => {
       if (user) {
         pet.userId = user.id;
         this.userId = user.id;
+        this.service.addPet(pet as Pet).subscribe(res => {
+          console.log("added pet", res);
+        })
+      }
+      else {
+        console.log("no user", this.pets);
+        localStorage.setItem('pets', JSON.stringify(this.pets));
       }
       this.service.addPet(pet as Pet).subscribe(res => {
-        console.log(res);
       })
     })
 

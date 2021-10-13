@@ -57,7 +57,7 @@ namespace WebAPI.Repositories
             
             if(get != null)
             {
-                Pet pet = new Pet(get.Id, get.Breed, get.Age, get.Location, get.InsurancePlan, get.InsuranceMonthly, get.UserId);
+                Pet pet = new Pet(get.Id, get.Breed, get.Age, get.Location, get.InsurancePlan, get.InsuranceMonthly, get.UserId, get.IsInsured);
                 return pet;
             }
 
@@ -66,7 +66,7 @@ namespace WebAPI.Repositories
 
         public Task<List<Pet>> GetPetsByUserId(int id)
         {
-            Task<List<Pet>> list = _context.Pets.Where(p => p.UserId == id).Select(x => new Pet(x.Id, x.Breed, x.Age, x.Location, x.InsurancePlan, x.InsuranceMonthly, x.UserId)).ToListAsync();
+            Task<List<Pet>> list = _context.Pets.Where(p => p.UserId == id).Select(x => new Pet(x.Id, x.Breed, x.Age, x.Location, x.InsurancePlan, x.InsuranceMonthly, x.UserId, x.IsInsured)).ToListAsync();
             return list;
         }
 
@@ -79,6 +79,7 @@ namespace WebAPI.Repositories
             original.InsurancePlan = pet.InsurancePlan;
             original.InsuranceMonthly = pet.InsuranceMonthly;
             original.UserId = pet.UserId;
+            original.IsInsured = pet.IsInsured;
             await _context.SaveChangesAsync();
             return pet;
         }
@@ -131,12 +132,12 @@ namespace WebAPI.Repositories
 
             decimal low = new decimal (.34);
             decimal high = new decimal (.66);
-            if (cost < low)
+            if (baseCost < low)
             {
                 plan.SilverCost = Math.Round(new decimal(.013) * foundBreed.Price, 2);
                 plan.GoldCost = Math.Round(new decimal(.024) * foundBreed.Price, 2);
             }
-            else if(cost > high)
+            else if(baseCost > high)
             {
                 plan.SilverCost = Math.Round(new decimal(.039) * foundBreed.Price, 2);
                 plan.GoldCost = Math.Round(new decimal(.058) * foundBreed.Price, 2);
@@ -147,6 +148,25 @@ namespace WebAPI.Repositories
                 plan.GoldCost = Math.Round(new decimal(.035) * foundBreed.Price, 2);
             }
             return plan;
+        }
+
+        public async Task PayPets(List<Pet> pets)
+        {
+            foreach(Pet pet in pets)
+            {
+                Entities.Pet original = await _context.Pets.Where(p => p.Id == pet.Id).FirstOrDefaultAsync();
+                if(original != null)
+                {
+                    original.Breed = pet.Breed;
+                    original.Age = pet.Age;
+                    original.Location = pet.Location;
+                    original.InsurancePlan = pet.InsurancePlan;
+                    original.InsuranceMonthly = pet.InsuranceMonthly;
+                    original.UserId = pet.UserId;
+                    original.IsInsured = true;
+                }
+            }
+            await _context.SaveChangesAsync();
         }
     }
 }
