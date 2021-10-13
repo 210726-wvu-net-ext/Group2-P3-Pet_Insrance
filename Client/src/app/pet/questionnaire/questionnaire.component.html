@@ -23,13 +23,12 @@
                     <h5 class="row">Age</h5>
                     <div class="" aria-label="Default select example" style="padding: 10px;">
                         <label for="customRange3" class="form-label">Please select age of your pet.</label>
-                        <input formControlName="age" type="range" class="form-range" min="0" max="25" step="0.3"
-                            id="customRange3" oninput="this.nextElementSibling.value = this.value">
-                        <output>1</output>
+                        <input formControlName="age" type="range" class="form-range" value="12.5" min="0" max="25"
+                            step=".1" id="customRange3" oninput="this.nextElementSibling.value = this.value">
+                        <output>12.5</output>
                         <h6>Lizard's Age</h6>
                     </div>
                 </div>
-
                 <div class="row" style="padding: 15px;">
                     <h5 class="row">State</h5>
                     <select formControlName="location" class="form-select" aria-label="Default select example"
@@ -91,10 +90,12 @@
                 <div style="text-align:center">
                     <button type="submit" class="btn btn-outline-primary me-2" style="padding: 15px;">Add a
                         Lizard</button>
-                    <button routerLink="/account/quote" type="submit" class="btn btn-outline-primary"
-                        style="padding: 15px;">Get a Quote</button>
+                    <button routerLink="../quote" class="btn btn-outline-primary" style="padding: 15px;">Get a
+                        Quote</button>
                 </div>
             </form>
+            <button routerLink="../quote" class="btn btn-outline-primary" style="padding: 15px;">Get a
+                Quote</button>
             <ul>
                 <li *ngFor="let pet of pets">
                     {{pet.breed}}

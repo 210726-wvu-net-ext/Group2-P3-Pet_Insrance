@@ -1,4 +1,5 @@
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"
+  id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 
@@ -67,25 +68,24 @@
               <span class="text-danger" *ngIf="form.controls['password'].dirty && form.hasError('required','password')">*Required</span>
             </div>
           </div>
-     
-          <!-- Save card -->
-          <div class="control-group">
-            <div class="controls">
-              <label class="checkbox" for="save_card">
-                <input type="checkbox" id="save_card" value="option1">
-                Save card on file?
-              </label>
-            </div>
+        </div>
+
+        <!-- Save card -->
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox" for="save_card">
+              <input type="checkbox" id="save_card" value="option1">
+              Save card on file?
+            </label>
           </div>
-     
           <!-- Submit -->
           <div class="control-group">
             <div class="controls">
-              <button routerLink="/account/purchase-status" [disabled]="!form.valid" class="btn btn-success">Pay Now</button>
+              <button <button (click)="onSubmit()" [disabled]="!form.valid" class="btn btn-success">Pay Now</button>
             </div>
           </div>
-     
-        </fieldset>
-      </form>
-    </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
 </div>

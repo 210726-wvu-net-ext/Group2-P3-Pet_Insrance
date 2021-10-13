@@ -1,129 +1,73 @@
-<!-- <div class="container" style="text-align:center; padding: 20px; padding-top: 5px;"><h1>Create Account</h1></div>
-<form class="row g-3 needs-validation" style="padding-left: 250px; padding-right: 250px;  padding-bottom: 200px;" novalidate>
-    <div class="col-md-4 position-relative">
-      <label for="validationTooltip01" class="form-label">First name</label>
-      <input type="text" class="form-control" id="validationTooltip01" value="Mark" required>
-      <div class="valid-tooltip">
-        Looks good!
-      </div>
-    </div>
-    <div class="col-md-4 position-relative">
-      <label for="validationTooltip02" class="form-label">Last name</label>
-      <input type="text" class="form-control" id="validationTooltip02" value="Otto" required>
-      <div class="valid-tooltip">
-        Looks good!
-      </div>
-    </div>
-    <div class="col-md-4 position-relative">
-      <label for="validationTooltipUsername" class="form-label">Username</label>
-      <div class="input-group has-validation">
-        <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
-        <input type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
-        <div class="invalid-tooltip">
-          Please choose a unique and valid username.
+<div class="container" style="margin-bottom: 100px;">
+  <div class="row">
+    <div class="col-mb-6">
+      <div class="card">
+        <div class="text center">
+          <h1>Sign Up</h1>
+          <h6>Please Register.</h6>
         </div>
-      </div>
-    </div>
-    <div class="col-md-6 position-relative">
-        <label for="validationTooltip03" class="form-label">Password</label>
-        <input type="text" class="form-control" id="validationTooltip03" required>
-        <div class="invalid-tooltip">
-          Please provide a Password.
-        </div>
-      </div>
-    <div class="col-md-6 position-relative">
-      <label for="validationTooltip03" class="form-label">Dob</label>
-      <input type="text" class="form-control" id="validationTooltip03" required>
-      <div class="invalid-tooltip">
-        Please provide your DoB.
-      </div>
-    </div>
-    <div class="col-md-3 position-relative">
-      <label for="validationTooltip04" class="form-label">State</label>
-      <select class="form-select" id="validationTooltip04" required>
-        <option selected disabled value="">Choose...</option>
-        <option>...</option>
-      </select>
-      <div class="invalid-tooltip">
-        Please select a valid state.
-      </div>
-    </div>
-    <div class="col-md-3 position-relative">
-      <label for="validationTooltip05" class="form-label">Phone Number</label>
-      <input type="text" class="form-control" id="validationTooltip05" required>
-      <div class="invalid-tooltip">
-        Please provide your phone number.
-      </div>
-    </div>
-    <div class="col-md-3 position-relative">
-        <label for="validationTooltip05" class="form-label">Email</label>
-        <input type="text" class="form-control" id="validationTooltip05" required>
-        <div class="invalid-tooltip">
-          Please provide your email.
-        </div>
-    </div>
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit">Create Account</button>
-    </div>
-    <div class="col-12">
-        <button class="btn btn-primary text-end" type="submit">Cancel</button>
-      </div>
-  </form> -->
-  <div class="container" style="margin-bottom: 100px;">
-    <div class="row">
-      <div class="col-mb-6">
-        <div class="card">
-          <div class="text center">
-            <h1>Sign Up</h1>
-            <h6>Please Register.</h6>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <!-- <label for="exampleInputPassword1" class="form-label">First Name</label> -->
+            <input formControlName="firstName" type="text" class="form-control" id="exampleInputPassword1"
+              placeholder="First Name">
+            <span class="text-danger"
+              *ngIf="registerForm.controls['firstName'].dirty && registerForm.hasError('required','firstName')">*Required</span>
           </div>
-          
-            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-              <div class="mb-3">
-                <!-- <label for="exampleInputPassword1" class="form-label">First Name</label> -->
-                <input formControlName="firstName" type="text" class="form-control" id="exampleInputPassword1" placeholder="First Name">
-                <span class="text-danger" *ngIf="registerForm.controls['firstName'].dirty && registerForm.hasError('required','firstName')">*Required</span>
-              </div>
-              <div class="mb-3">
-                <!-- <label for="exampleInputPassword1" class="form-label">Last Name</label> -->
-                <input formControlName="lastName" type="text" class="form-control" id="exampleInputPassword1" placeholder="Last Name">
-                <span class="text-danger" *ngIf="registerForm.controls['lastName'].dirty && registerForm.hasError('required','lastName')">*Required</span>
-              </div>
-              <div class="mb-3">
-                <!-- <label for="exampleInputPassword1" class="form-label">User Name</label> -->
-                <input formControlName="userName" type="text" class="form-control" id="exampleInputPassword1" placeholder="User Name">
-                <span class="text-danger" *ngIf="registerForm.controls['userName'].dirty && registerForm.hasError('required','userName')">*Required</span>
-              </div>
-              <div class="mb-3">
-                <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
-                <input formControlName="password" type="text" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                <span class="text-danger" *ngIf="registerForm.controls['password'].dirty && registerForm.hasError('required','password')">*Required</span>
-              </div>
-              <div class="mb-3">
-                <!-- <label for="exampleInputPassword1" class="form-label">DOB</label> -->
-                <input formControlName="doB" type="date" class="form-control" id="exampleInputPassword1" placeholder="DOB">
-                <span class="text-danger" *ngIf="registerForm.controls['doB'].dirty && registerForm.hasError('required','doB')">*Required</span>
-              </div>
-              <div class="mb-3">
-                <!-- <label for="exampleInputPassword1" class="form-label">Location</label> -->
-                <input formControlName="location" type="text" class="form-control" id="exampleInputPassword1" placeholder="Your State">
-                <span class="text-danger" *ngIf="registerForm.controls['location'].dirty && registerForm.hasError('required','location')">*Required</span>
-              </div>
-              <div class="mb-3">
-                <!-- <label for="exampleInputPassword1" class="form-label">Phone Number</label> -->
-                <input formControlName="phoneNumber" type="text" class="form-control" id="exampleInputPassword1" placeholder="Phone Number">
-                <span class="text-danger" *ngIf="registerForm.controls['phoneNumber'].dirty && registerForm.hasError('required','phoneNumber')">*Required</span>
-              </div>
-              <div class="mb-3">
-                <!-- <label for="exampleInputEmail1" class="form-label">Email address</label> -->
-                <input formControlName="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
-                <span class="text-danger" *ngIf="registerForm.controls['email'].dirty && registerForm.hasError('required','email')">*Required</span>
-                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-              </div>
-              <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary">Sign-Up</button>
-            </form>
-            <a style="margin-top: 10px;" routerLink="/account/login">Already registered? Login Here.</a>
-        </div>
+          <div class="mb-3">
+            <!-- <label for="exampleInputPassword1" class="form-label">Last Name</label> -->
+            <input formControlName="lastName" type="text" class="form-control" id="exampleInputPassword1"
+              placeholder="Last Name">
+            <span class="text-danger"
+              *ngIf="registerForm.controls['lastName'].dirty && registerForm.hasError('required','lastName')">*Required</span>
+          </div>
+          <div class="mb-3">
+            <!-- <label for="exampleInputPassword1" class="form-label">User Name</label> -->
+            <input formControlName="userName" type="text" class="form-control" id="exampleInputPassword1"
+              placeholder="User Name">
+            <span class="text-danger"
+              *ngIf="registerForm.controls['userName'].dirty && registerForm.hasError('required','userName')">*Required</span>
+          </div>
+          <div class="mb-3">
+            <!-- <label for="exampleInputPassword1" class="form-label">Password</label> -->
+            <input formControlName="password" type="text" class="form-control" id="exampleInputPassword1"
+              placeholder="Password">
+            <span class="text-danger"
+              *ngIf="registerForm.controls['password'].dirty && registerForm.hasError('required','password')">*Required</span>
+          </div>
+          <div class="mb-3">
+            <!-- <label for="exampleInputPassword1" class="form-label">DOB</label> -->
+            <input formControlName="doB" type="date" class="form-control" id="exampleInputPassword1" placeholder="DOB">
+            <span class="text-danger"
+              *ngIf="registerForm.controls['doB'].dirty && registerForm.hasError('required','doB')">*Required</span>
+          </div>
+          <div class="mb-3">
+            <!-- <label for="exampleInputPassword1" class="form-label">Location</label> -->
+            <input formControlName="location" type="text" class="form-control" id="exampleInputPassword1"
+              placeholder="Your State">
+            <span class="text-danger"
+              *ngIf="registerForm.controls['location'].dirty && registerForm.hasError('required','location')">*Required</span>
+          </div>
+          <div class="mb-3">
+            <!-- <label for="exampleInputPassword1" class="form-label">Phone Number</label> -->
+            <input formControlName="phoneNumber" type="text" class="form-control" id="exampleInputPassword1"
+              placeholder="Phone Number">
+            <span class="text-danger"
+              *ngIf="registerForm.controls['phoneNumber'].dirty && registerForm.hasError('required','phoneNumber')">*Required</span>
+          </div>
+          <div class="mb-3">
+            <!-- <label for="exampleInputEmail1" class="form-label">Email address</label> -->
+            <input formControlName="email" type="text" class="form-control" id="exampleInputEmail1"
+              aria-describedby="emailHelp" placeholder="Email">
+            <span class="text-danger"
+              *ngIf="registerForm.controls['email'].dirty && registerForm.hasError('required','email')">*Required</span>
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary">Sign-Up</button>
+        </form>
+        <a style="margin-top: 10px;" routerLink="/account/login">Already registered? Login Here.</a>
       </div>
     </div>
   </div>
+</div>

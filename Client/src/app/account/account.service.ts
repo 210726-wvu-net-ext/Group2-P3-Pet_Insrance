@@ -13,10 +13,6 @@ import { User } from './user';
 })
 export class AccountService {
 
-  showUsers() {
-    this.sharedService.getUsers();
-  }
-
   private userSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
   user$: Observable<User | null> = this.userSubject.asObservable().pipe(shareReplay(1));
 
@@ -29,13 +25,27 @@ export class AccountService {
       this.userSubject.next(localUser);
     }
   }
-
+  isLogged() {
+    if (this.userSubject.value) {
+      return true;
+    }
+    else return false;
+  }
   logIn(user: LoginRequest) {
     this.sharedService.logInUser(user).subscribe((user: User | null) => {
       this.userSubject.next(user);
       localStorage.setItem('user', JSON.stringify(user))
+      this.router.navigate(['logged']);
       return user;
     });
+  }
+  getUser() {
+    if (this.userSubject.value) {
+      return (this.userSubject.value as User)
+    }
+    else {
+      return null;
+    }
   }
   register(user: User) {
     console.log("register", user);

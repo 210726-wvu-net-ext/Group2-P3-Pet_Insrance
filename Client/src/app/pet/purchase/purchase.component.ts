@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService } from 'src/app/account/account.service';
+import { SharedService } from 'src/app/shared/shared.service';
+import { Pet } from '../pet';
+import { PetService } from '../pet.service';
 
 @Component({
   selector: 'app-purchase',
@@ -10,7 +13,9 @@ import { AccountService } from 'src/app/account/account.service';
 export class PurchaseComponent implements OnInit {
   
 
-  constructor(private service: AccountService, private formBuilder: FormBuilder) { }
+  constructor(private acc: AccountService, private service: SharedService, private formBuilder: FormBuilder) { }
+  pets: Pet[] = [];
+
 
   form: FormGroup = new FormGroup(
     {
@@ -29,6 +34,24 @@ export class PurchaseComponent implements OnInit {
       expiry_year: ['', Validators.required],
       password: ['', Validators.required]
     })
+    this.acc.user$.subscribe(p => {
+      console.log(p);
+      if (p) {
+        this.service.getPets(p).subscribe(x => {
+          this.pets = x;
+          console.log("heyo", this.pets)
+        })
+      }
+    });
+  }
+
+
+
+
+  onSubmit() {
+    console.log("sup submit", this.pets);
+    this.service.payForInsurance(this.pets);
+
   }
 
 }
