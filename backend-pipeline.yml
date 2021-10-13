@@ -29,7 +29,9 @@ stages:
           scannerMode: 'MSBuild'
           projectKey: '210726-wvu-net-ext_Group2-P3-Pet_Insurance'
           projectName: 'Group2-P3-Pet_Insurance'
-          extraProperties: 'sonar.exclusions=**/lib/**/*'
+          extraProperties: |
+            'sonar.exclusions=**/lib/**/*'
+            sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/*/coverage.opencover.xml
   #Build and test dotnet code
       # Force dotnet 5
       - task: UseDotNet@2
@@ -55,8 +57,14 @@ stages:
       - task: CmdLine@2
         displayName: Dotnet Tests
         inputs:
-          script: 'dotnet test --configuration Release'
+          script: dotnet test
+            --configuration Release
+            --collect:"XPlat Code Coverage"
+            --results-directory $(Agent.TempDirectory)
+            --
+            DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover
           workingDirectory: $(sDir)
+        continueOnError: true
       # Force dotnet 3.1
       - task: UseDotNet@2
         displayName: Dotnet SDK 3
@@ -89,6 +97,13 @@ stages:
           repository: 'gecko/backend'
           command: 'buildAndPush'
           Dockerfile: '**/Dockerfile'
+          tags: 'latest'
+      #Publish artifact
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(sDir)/WebAPI.yml'
+          artifact: 'manifest'
+          publishLocation: 'pipeline'
       #logout
       - task: Docker@2
         displayName: Logout

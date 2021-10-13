@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  dbURL: "https://localhost:44368/api",
+  dbURL: "http://gecko-api.eastus.cloudapp.azure.com/api",
 
 };

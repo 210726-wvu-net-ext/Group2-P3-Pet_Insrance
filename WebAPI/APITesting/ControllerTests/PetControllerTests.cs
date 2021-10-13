@@ -95,7 +95,7 @@ namespace APITesting.RepositoriesTests
         {
             List<Pet> petList = new List<Pet>()
             {
-                
+
                 new Pet(){ Id=1, Age=5, Breed="Bearded Dragon", InsuranceMonthly="Gold", InsurancePlan="Gold", Location="Hawaii", UserId=1},
                 new Pet(){ Id=2, Age=9, Breed="Mountain Horned Dragon", InsuranceMonthly="Gold", InsurancePlan="Gold", Location="Hawaii", UserId=1},
                 new Pet(){ Id=2, Age=10, Breed="Green Basilisk", InsuranceMonthly="Gold", InsurancePlan="Gold", Location="Hawaii", UserId=1}
