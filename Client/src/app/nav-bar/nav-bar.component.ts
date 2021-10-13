@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AccountService } from '../account/account.service';
+import { User } from '../account/user';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor() { }
+
+  @Input() user!: User | null;
+
+  constructor(public accountService: AccountService) { }
 
   ngOnInit(): void {
+    this.user = this.accountService.getUser();
   }
-
 }

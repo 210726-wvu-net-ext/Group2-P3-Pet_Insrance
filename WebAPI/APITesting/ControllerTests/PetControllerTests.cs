@@ -13,7 +13,6 @@ namespace APITesting.RepositoriesTests
     {
         private readonly Mock<IPet> _repo;
         private readonly PetsController _controller;
-
         public PetControllerTests()
         {
             _repo = new Mock<IPet>();

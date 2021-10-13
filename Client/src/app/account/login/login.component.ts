@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AccountService } from '../account.service';
 import { LoginRequest } from '../loginRequest';
+import { User } from '../user';
 
 @Component({
   selector: 'app-login',
@@ -10,41 +11,36 @@ import { LoginRequest } from '../loginRequest';
 })
 export class LoginComponent implements OnInit {
 
-  constructor( private service :AccountService, private formBuilder: FormBuilder) { }
+  constructor(private service: AccountService, private formBuilder: FormBuilder) { }
 
 
-
-  form: FormGroup = new FormGroup ( 
+  form: FormGroup = new FormGroup(
     {
       userName: new FormControl(''),
       password: new FormControl(''),
       email: new FormControl('')
-    }); 
-    
+    });
+
 
 
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      userName:[''],
-      password: [''],
-      email: ['']
+      userName: ['', Validators.required],
+      password: ['', Validators.required],
+      email: ['', Validators.required]
     })
   }
 
 
 
   onSubmit() {
-    console.log("Hello from submit");
     let request: LoginRequest;
-    
-      request = {
-        userName: this.form.value.userName,
-        email: this.form.value.email,
-        password: this.form.value.password
-      }
-    console.log(request);
-    
+    request = {
+      userName: this.form.value.userName,
+      email: this.form.value.email,
+      password: this.form.value.password
+    }
     this.service.logIn(request);
   }
 }

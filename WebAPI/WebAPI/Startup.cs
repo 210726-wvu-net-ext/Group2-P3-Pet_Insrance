@@ -39,7 +39,6 @@ namespace WebAPI
             services.AddDbContext<petinsuranceContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("lizardDB"));
-                options.LogTo(Console.WriteLine);
             });
 
             services.AddScoped<IPet, PetRepository>();
