@@ -1,3 +1,6 @@
+
+<span class="example-spacer">
+    
 <div class="container-fluid">
     <div>
         <img class="logo" src="/assets/images/lizard.png" style="max-height: 180px; padding-left: 30px;" alt="logo">
@@ -7,11 +10,10 @@
         <h3>Don't forget to insure your lizard.</h3>
         
     </div>
-    <div>
-        <header><app-nav-bar></app-nav-bar></header>
-        
-        <!-- <app-questionnaire></app-questionnaire> -->
-        
+    <div class="main">
+        <app-nav-bar></app-nav-bar>
+    
+        <router-outlet></router-outlet>
     </div>
 </div>
-<div><router-outlet></router-outlet></div>
+</span>
