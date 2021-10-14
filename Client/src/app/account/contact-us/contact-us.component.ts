@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 @Component({
   selector: 'app-contact-us',
@@ -11,13 +12,13 @@ export class ContactUsComponent{
     emailjs.sendForm('service_v2bvq0h', 'template_d8hoiul', e.target as HTMLFormElement, 'user_EQxzhd1kES8Lhjv21zZOC')
       .then((result: EmailJSResponseStatus) => {
         console.log(result.text);
-        alert("Email Sent Successfully!")
+        this.router.navigate(['email-status']);
       }, (error) => {
         console.log(error.text);
       });
   }
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     

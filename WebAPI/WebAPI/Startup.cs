@@ -50,6 +50,7 @@ namespace WebAPI
                     options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
                     {
                         builder.WithOrigins("https://localhost:44368",
+                                            "http://localhost:4200",
                                             "http://gecko-ui.eastus.cloudapp.azure.com"
                     ).WithHeaders("*").AllowAnyMethod();
                 });
