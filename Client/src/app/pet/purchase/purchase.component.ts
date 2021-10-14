@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AccountService } from 'src/app/account/account.service';
 import { SharedService } from 'src/app/shared/shared.service';
 import { Pet } from '../pet';
@@ -13,7 +14,7 @@ import { PetService } from '../pet.service';
 export class PurchaseComponent implements OnInit {
   
 
-  constructor(private acc: AccountService, private service: SharedService, private formBuilder: FormBuilder) { }
+  constructor(private acc: AccountService, private service: SharedService, private formBuilder: FormBuilder, private router: Router) { }
   pets: Pet[] = [];
 
 
@@ -51,6 +52,7 @@ export class PurchaseComponent implements OnInit {
   onSubmit() {
     console.log("sup submit", this.pets);
     this.service.payForInsurance(this.pets);
+    this.router.navigate(['purchase-status']);
 
   }
 
