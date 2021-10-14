@@ -9,7 +9,7 @@ kind: Service
 metadata:
   annotations:
     service.beta.kubernetes.io/azure-dns-label-name: gecko-api
-  name: azure-load-balancer
+  name: gecko-api
 spec:
   type: LoadBalancer
   selector:
