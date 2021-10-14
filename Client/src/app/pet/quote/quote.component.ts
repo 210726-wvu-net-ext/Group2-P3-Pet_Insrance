@@ -4,6 +4,7 @@ import { SharedService } from 'src/app/shared/shared.service';
 import { Pet } from '../pet';
 import { planOptions } from '../planOptions';
 import { quoteDisplay } from '../quoteDisplay';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-quote',
@@ -84,6 +85,16 @@ export class QuoteComponent implements OnInit {
     }
 
     )
+  }
+  public sendEmail(e: Event) {
+    e.preventDefault();
+    emailjs.sendForm('service_v2bvq0h', 'template_ysypmop', e.target as HTMLFormElement, 'user_EQxzhd1kES8Lhjv21zZOC')
+      .then((result: EmailJSResponseStatus) => {
+        console.log(result.text);
+        alert("Email Sent Successfully!")
+      }, (error) => {
+        console.log(error.text);
+      });
   }
   onSubmit() {
 
