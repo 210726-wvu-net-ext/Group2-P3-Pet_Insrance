@@ -11,6 +11,7 @@ export class ContactUsComponent{
     emailjs.sendForm('service_v2bvq0h', 'template_d8hoiul', e.target as HTMLFormElement, 'user_EQxzhd1kES8Lhjv21zZOC')
       .then((result: EmailJSResponseStatus) => {
         console.log(result.text);
+        alert("Email Sent Successfully!")
       }, (error) => {
         console.log(error.text);
       });
