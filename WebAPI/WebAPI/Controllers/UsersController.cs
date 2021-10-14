@@ -12,7 +12,7 @@ using WebAPI.Repositories.Interfaces;
 namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
-    [EnableCors("AllowAll")]
+    [EnableCors("*")]
     [ApiController]
     public class UsersController : ControllerBase
     {

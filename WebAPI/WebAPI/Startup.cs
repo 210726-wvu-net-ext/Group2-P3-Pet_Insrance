@@ -22,7 +22,6 @@ namespace WebAPI
 {
     public class Startup
     {
-        private readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         public Startup(IConfiguration configuration)
         {
@@ -69,7 +68,6 @@ namespace WebAPI
             }
 
 
-            
             app.UseHttpsRedirection();
 
             app.UseRouting();
