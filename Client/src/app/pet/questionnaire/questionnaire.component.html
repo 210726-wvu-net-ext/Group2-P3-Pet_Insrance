@@ -1,5 +1,9 @@
-<div class="card" style="margin-bottom: 180px; margin-top: 300px;">
+<body>
+    
+
+<div class="card" style="margin-bottom: 180px; margin-top: 300px; flex-wrap: wrap; position:relative">
     <div class="container">
+        <span class="example-spacer">
         <div class="col">
             <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="row" style="padding: 15px;">
@@ -94,15 +98,20 @@
                         Quote</button>
                 </div>
             </form>
-            <button routerLink="../quote" class="btn btn-outline-primary" style="padding: 15px;">Get a
-                Quote</button>
-            <ul>
-                <li *ngFor="let pet of pets">
-                    {{pet.breed}}
-                    {{pet.age}}
-                    {{pet.location}}
-                </li>
-            </ul>
+            <!-- <button routerLink="../quote" class="btn btn-outline-primary" style="padding: 15px;">Get a
+                Quote</button> -->
+                <div style="text-align: left; margin-top: 20px;">
+                    <ul>
+                        <li *ngFor="let pet of pets">
+                            {{pet.breed}}
+                            {{pet.age}}
+                            {{pet.location}}
+                        </li>
+                    </ul>
+                </div>
+            
         </div>
+    </span>
     </div>
 </div>
+</body>
