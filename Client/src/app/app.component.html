@@ -1,13 +1,17 @@
-<div class="col-12">
+<div class="container-fluid">
     <div>
         <img class="logo" src="/assets/images/lizard.png" style="max-height: 180px; padding-left: 30px;" alt="logo">
     </div>
-    <div style="text-align:center;">
-        <h1>Welcome to {{title}}.</h1>
-        <h2>Don't forget to insure your lizard.</h2>
-        <p></p>
+    <div style="text-align:center; text-transform: uppercase; text-shadow: lightgreen;">
+        <h1 style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Welcome to {{title}}.</h1>
+        <h3>Don't forget to insure your lizard.</h3>
+        
+    </div>
+    <div>
+        <header><app-nav-bar></app-nav-bar></header>
+        
+        <!-- <app-questionnaire></app-questionnaire> -->
+        
     </div>
 </div>
-<app-nav-bar></app-nav-bar>
-<!-- <app-questionnaire></app-questionnaire> -->
-<router-outlet></router-outlet>
+<div><router-outlet></router-outlet></div>
