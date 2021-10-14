@@ -45,15 +45,10 @@ namespace WebAPI
             //services.AddScoped<IBreed, BreedRepository>();
             services.AddScoped<IUser, UserRepository>();
 
-            services.AddCors(options =>
+            services.AddCors(c =>
             {
-                    options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
-                    {
-                        builder.WithOrigins("https://localhost:44368",
-                                            "http://localhost:4200",
-                                            "http://gecko-ui.eastus.cloudapp.azure.com"
-                    ).WithHeaders("*").AllowAnyMethod();
-                });
+                c.AddPolicy("AllowAll", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                
             });
             services.AddControllers();
             services.AddSwaggerGen(c =>
