@@ -47,7 +47,7 @@ namespace WebAPI
 
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowAll", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+                c.AddPolicy("AllowAll", options => options.SetIsOriginAllowed(option => true).AllowAnyMethod().AllowAnyHeader().AllowCredentials()) ;
                 
             });
             services.AddControllers();
@@ -68,14 +68,14 @@ namespace WebAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebAPI v1"));
             }
 
-            app.UseCors("AllowAll");
+
             
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors("AllowAll");
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
