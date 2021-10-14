@@ -47,7 +47,7 @@ namespace WebAPI
 
             services.AddCors(c =>
             {
-                c.AddPolicy("AllowAll", options => options.AllowAnyHeader().AllowAnyMethod().AllowAnyHeader().AllowCredentials()) ;
+                c.AddPolicy("AllowAll", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials()) ;
                 
             });
             services.AddControllers();
