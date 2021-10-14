@@ -4,6 +4,8 @@ import { SharedService } from 'src/app/shared/shared.service';
 import { Pet } from '../pet';
 import { planOptions } from '../planOptions';
 import { quoteDisplay } from '../quoteDisplay';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quote',
@@ -14,7 +16,7 @@ export class QuoteComponent implements OnInit {
   pets: Pet[] = [];
   plans: quoteDisplay[] = [];
   petPlans: planOptions[] = [];
-  constructor(private acc: AccountService, private service: SharedService) { }
+  constructor(private acc: AccountService, private service: SharedService, private router: Router) { }
 
   ngOnInit(): void {
     this.acc.user$.subscribe(p => {
@@ -84,6 +86,17 @@ export class QuoteComponent implements OnInit {
     }
 
     )
+  }
+  public sendEmail(e: Event) {
+    e.preventDefault();
+    emailjs.sendForm('service_v2bvq0h', 'template_ysypmop', e.target as HTMLFormElement, 'user_EQxzhd1kES8Lhjv21zZOC')
+      .then((result: EmailJSResponseStatus) => {
+        console.log(result.text);
+        alert("Email Sent Successfully!")
+        this.router.navigate(['purchase']);
+      }, (error) => {
+        console.log(error.text);
+      });
   }
   onSubmit() {
 

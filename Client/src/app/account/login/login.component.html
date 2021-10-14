@@ -44,7 +44,7 @@
             <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             <span class="text-danger" *ngIf="form.controls['password'].dirty && form.hasError('required','password')">*Required</span>
           </div>
-          <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Login</button>
+          <button type="submit" class="btn btn-primary">Login</button>
         </form>
         <a style="margin-top: 10px;" routerLink="/account/register">Not registered? Register Here.</a>
       </div>

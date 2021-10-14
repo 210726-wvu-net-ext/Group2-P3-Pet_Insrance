@@ -11,6 +11,7 @@ import { PurchaseStatusComponent } from '../pet/purchase-status/purchase-status.
 import { CustAccountComponent } from './cust-account/cust-account.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { EmailStatusComponent } from './email-status/email-status.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'questionnaire', pathMatch: 'full' },
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'cust-account', component: CustAccountComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'logged', component: QuestionnaireComponent }
+  { path: 'logged', component: QuestionnaireComponent },
+  {path: 'email-status', component: EmailStatusComponent}
 ];
 
 @NgModule({
